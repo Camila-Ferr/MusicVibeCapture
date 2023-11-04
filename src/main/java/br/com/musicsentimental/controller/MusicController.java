@@ -25,4 +25,14 @@ public class MusicController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    @GetMapping("/findById")
+    public ResponseEntity<Music> getById() {
+        Music music = musicRepository.findFirstByOrderByAvaliacoesAsc();
+        if (music != null) {
+            return new ResponseEntity<>(music, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

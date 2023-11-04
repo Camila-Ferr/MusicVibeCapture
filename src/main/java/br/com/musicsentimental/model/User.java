@@ -21,6 +21,7 @@ public class User {
 	private String senha;
 	@Column(name = "idade", nullable = true)
 	private int idade;
+	private String musicExp;
 	
 	public long getId() {
 		return id;
@@ -51,6 +52,12 @@ public class User {
 	}
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+	public String getMusicExp() {
+		return musicExp;
+	}
+	public void setMusicExp(String musicExp) {
+		this.musicExp = musicExp;
 	}
 
 }

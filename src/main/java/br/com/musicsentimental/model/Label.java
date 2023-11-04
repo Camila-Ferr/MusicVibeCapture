@@ -21,7 +21,7 @@ public enum Label {
 	
 	public String getRotulo() {
 		return rotulo;
-		}
+	}
 	
 	public static Label getByCodigo(int codigo) {
 		
