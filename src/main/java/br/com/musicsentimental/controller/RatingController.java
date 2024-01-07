@@ -32,10 +32,12 @@ public class RatingController {
     public ResponseEntity<Rating> cadastrarAvaliacao(@RequestBody Map<String, String> requestBody, @SessionAttribute("user") User user) {
     	Music music = ratingService.adicionaAvaliacao(requestBody.get("music"));
         Label label = Label.getByCodigo(Integer.parseInt(requestBody.get("label")));
+        String adicional = requestBody.get("adicional");
         
-        Rating rating = new Rating(user, music, label, "");
+        Rating rating = new Rating(user, music, label, adicional);
         Rating savedRating = repository.save(rating);
         
         return ResponseEntity.ok(savedRating);
     }
+    
 }

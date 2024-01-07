@@ -1,0 +1,23 @@
+.btn-box .btn-1 {
+  padding: 10px 0;
+  background-color: #ff4f5a;
+  color: #ffffff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+  border-radius: 0;
+  align-items: center;
+  width: 100%;
+}
+.btn-box .btn-1:hover {
+  background-color: transparent;
+  border-color: #ff4f5a;
+  color: #ff4f5a;
+}
+
+.font {
+      font-size: 22px; 
+}
+.btn-secondary {
+   box-shadow:  #1cbbb4;   
+}
