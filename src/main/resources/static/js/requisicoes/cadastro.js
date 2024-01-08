@@ -1,13 +1,13 @@
 document.getElementById("registrationForm").addEventListener("submit", function(event) {
 	event.preventDefault();
-
-      const user = {
-                email: document.getElementById("emailR").value,
-                usuario: document.getElementById("username").value,
-                senha: document.getElementById("password").value,
-                idade: parseInt(document.getElementById("age").value),
-                musicExp: document.getElementById("music").value
-            };
+	
+	const user = {
+		email: document.getElementById("emailR").value,
+        usuario: document.getElementById("username").value,
+        senha: document.getElementById("password").value,
+        idade: parseInt(document.getElementById("age").value),
+        musicExp: document.getElementById("music").value
+    };
     
      fetch('/usuarios/cadastrar', {
                 method: 'POST',

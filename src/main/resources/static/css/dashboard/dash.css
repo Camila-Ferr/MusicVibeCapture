@@ -21,3 +21,10 @@
 .btn-secondary {
    box-shadow:  #1cbbb4;   
 }
+
+.list-musics{
+	flex-direction: column !important;
+}
+.position-dash{
+	align-items: stretch !important;
+}

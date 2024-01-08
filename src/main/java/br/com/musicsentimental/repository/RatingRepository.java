@@ -14,7 +14,7 @@ import br.com.musicsentimental.model.User;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating, Long> {
 	
-	 @Query("SELECT m FROM Music m WHERE m NOT IN (SELECT r.music FROM Rating r WHERE r.user = :user)")
+	 @Query("SELECT m FROM Music m WHERE m NOT IN (SELECT r.music FROM Rating r WHERE r.user = :user) ORDER BY m.avaliacoes ASC")
 	 List<Music> findUnratedMusicByUser(@Param("user") User user);
 
 }

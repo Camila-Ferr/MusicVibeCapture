@@ -1,28 +1,19 @@
-function next() {
-	fetch('/music/next', {
-        method: 'GET',
-    })
-    .then(response => response.json())
-    .then(data => {
-		console.log(data);
-        document.getElementById("music").setAttribute("src", data.link);
-    })
-    .catch(error => {
-        console.error('Erro ao carregar a próxima música:', error);
-    });
-};
 document.addEventListener("DOMContentLoaded", function() {
-	next();
 	loadMusicList();
 });
 
-function loadMusic(link) {
-	console.log("aq");
+function loadMusic(link,elemento) {
+	const activeElements = document.querySelectorAll('.active');
+    	activeElements.forEach(element => {
+        element.classList.remove('active');
+    });
+	 elemento.classList.add('active');
     document.getElementById("music").setAttribute("src", link);
 };
 
 function loadMusicList() {
-    const navbarNav = document.querySelector('.navbar-nav');
+    const navbarNav = document.querySelector('.list-musics');
+    console.log(navbarNav);
 
     fetch('/music/musicsUsers', {
         method: 'GET',
@@ -35,8 +26,9 @@ function loadMusicList() {
         ul.classList.add('navbar-nav');
 
         data.forEach(music => {
-            const nav = document.createElement('nav');
+            const nav = document.createElement('li');
             nav.classList.add('nav-item');
+            
             nav.dataset.id = music.id; 
 
             const a = document.createElement('a');
@@ -44,27 +36,28 @@ function loadMusicList() {
             a.href = '#'; 
             a.textContent = music.nome; 
             
-            a.setAttribute('onclick', `loadMusic('${music.link}')`);
+            a.setAttribute('onclick', `loadMusic('${music.link}', this)`);
              
             nav.appendChild(a);
             ul.appendChild(nav);
         });
 
         navbarNav.innerHTML = ul.innerHTML;
+        document.getElementById("music").setAttribute("src", data[0].link);
     })
     .catch(error => {
         console.error('Erro ao carregar a lista de músicas:', error);
     });
 }
+
 function envioAvaliacao(proximo) {
-    console.log("aq");
 
     const avaliacao = {
         music: document.getElementById("music").getAttribute("src"),
         label: document.querySelector('input[name="gridRadios"]:checked + label p option').value,
         adicional: document.getElementById("opniao").value
     };
-
+	
     console.log(avaliacao.music);
     console.log(avaliacao.label);
 
@@ -78,10 +71,11 @@ function envioAvaliacao(proximo) {
     .then(response => response.json())
     .then(data => {
         console.log('Foi');
+        document.getElementById("opniao").value = "";
+        document.querySelector('input[name="gridRadios"]:checked').checked = false;
 
         if (proximo === true) {
-            next();
-            loadMusicList();
+			loadMusicList();
         } else {
              window.location.href = '/';
         }

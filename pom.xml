@@ -71,19 +71,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	            <groupId>org.codehaus.mojo</groupId>
 	            <artifactId>exec-maven-plugin</artifactId>
 	            <version>3.0.0</version>
-            	
-            	<executions>
-                	<execution>
-                    	<id>typescript-compile</id>
-                    	<phase>generate-sources</phase>
-                    	<goals>
-                        	<goal>exec</goal>
-                    	</goals>
-                    	<configuration>
-                        	<executable>tsc</executable>
-                    	</configuration>
-                	</execution>
-            	</executions>
         	</plugin>
 		</plugins>
 	</build>

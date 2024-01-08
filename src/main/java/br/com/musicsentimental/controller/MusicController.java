@@ -23,26 +23,6 @@ public class MusicController {
     
     @Autowired
     private RatingRepository ratingRepository;
-
-    @GetMapping("/next")
-    public ResponseEntity<Music> getMusicWithLowestRating() {
-        Music music = musicRepository.findFirstByOrderByAvaliacoesAsc();
-        if (music != null) {
-            return new ResponseEntity<>(music, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-    
-    @GetMapping("/findById")
-    public ResponseEntity<Music> getById() {
-        Music music = musicRepository.findFirstByOrderByAvaliacoesAsc();
-        if (music != null) {
-            return new ResponseEntity<>(music, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
     
     @GetMapping("/musicsUsers")
     public ResponseEntity<List<Music>> avaliacoesPorUsuario(@SessionAttribute("user") User user) { 
