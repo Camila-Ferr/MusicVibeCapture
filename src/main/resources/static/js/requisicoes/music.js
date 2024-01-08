@@ -33,12 +33,19 @@ function loadMusicList() {
 
             const a = document.createElement('a');
             a.classList.add('nav-link');
+            a.classList.add('text-white');
             a.href = '#'; 
+            a.textContent = music.nome; 
+            
+            const span = document.createElement('span');
+            span.classList.add('nav-link-text');
+
             a.textContent = music.nome; 
             
             a.setAttribute('onclick', `loadMusic('${music.link}', this)`);
              
             nav.appendChild(a);
+            a.appendChild(span);
             ul.appendChild(nav);
         });
 

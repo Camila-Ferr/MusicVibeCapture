@@ -11,7 +11,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Login</title>
+  <title>Cadastro</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -82,19 +82,20 @@
       </div>
     </header>
    </div>
-	<section class="form">
-    <div class="register-photo" style="height: 50%;">
-        <div class="form-container">
-            <div class="image-holder"></div>
-            <form method="post" id="loginForm">
-                <h2 class="text-center"><strong>Faça login na sua conta</strong></h2>
-                <div id="loginError" class="text-danger d-flex justify-content-center"></div>
-                <div class="form-group"><input class="form-control" type="email" name="email" id="email" placeholder="Email"></div>
-                <div class="form-group"><input class="form-control" type="password" name="senha" id="senha" placeholder="Senha"></div>
+		<div class="register-photo" style="height: 50%;">
+    	<div class="form-container">
+			<form method="post" id="registrationForm">
+				<h2 class="text-center"><strong>Registre-se</strong></h2>
+				 <div class="form-group"><input class="form-control" type="text" name="username" id="username" placeholder="Nome de Usuário"></div>
+				 <div class="form-group"><input class="form-control" type="text" name="nome" id="nome" placeholder="Nome"></div>
+	             <div class="form-group"><input class="form-control" type="email" name="email" id="emailR" placeholder="Email"></div>
+	             <div class="form-group"><input class="form-control" type="password" name="password" id="password" placeholder="Senha"></div>
+	             <div class="form-group"><input class="form-control" type="text" name="music" id="music" placeholder="Experiência com música"></div>
+	             <label for="nascimento">Data de Nascimento:</label><input class="form-control" type="date" name="nascimento" id="nascimento" value=""min="1934-01-01" max="2024-12-31" required>
+	             <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Registre-se</button></div><a href="/login" class="already">Já tem uma conta? Faça login.</a>
+			</form>
+			<div class="image-register"></div>
                 
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Login</button></div><a href="/cadastro" class="already">Não tem uma conta? Crie aqui.</a>
-                
-                </form>
         </div>
     </div>
     </section>
@@ -131,12 +132,12 @@
   </section>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/custom.js"></script>
-  <script src="js/template.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script src="js/bootstrap.js"></script>
+   <script src="js/custom.js"></script>
+   <script src="js/template.js"></script>
    <script src="js/requisicoes/login.js"></script>
    <script src="js/requisicoes/cadastro.js"></script>
 

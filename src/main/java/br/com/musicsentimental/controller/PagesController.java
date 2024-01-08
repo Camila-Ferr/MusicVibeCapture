@@ -25,6 +25,16 @@ public class PagesController {
     public ResponseEntity<String> login() throws IOException {
         return getResource("static/login.html");
     }
+    @GetMapping("/cadastro")
+    public ResponseEntity<String> cadastro() throws IOException {
+        return getResource("static/cadastro.html");
+    }
+    @GetMapping("/dashboard")
+    public ResponseEntity<String> dashboard() throws IOException {
+        return getResource("static/dashboard.html");
+    }
+    
+    
 	
 	private ResponseEntity<String> getResource(String path) throws IOException {
         Resource resource = new ClassPathResource(path);

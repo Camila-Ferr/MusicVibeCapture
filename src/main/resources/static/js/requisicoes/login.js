@@ -15,9 +15,9 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Foi');
+                window.location.href = '/dashboard';
             })
             .catch(error => {
-                console.error('Erro ao logar usuário:', error);
+                document.getElementById("loginError").innerText = "Usuário ou senha incorretos.";
             });
 });

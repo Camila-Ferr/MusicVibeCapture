@@ -3,7 +3,10 @@ package br.com.musicsentimental.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +41,15 @@ public class RatingController {
         Rating savedRating = repository.save(rating);
         
         return ResponseEntity.ok(savedRating);
+    }
+    
+    @GetMapping("/rankingUsers")
+    public ResponseEntity<String> rankingUsers(@ModelAttribute("user") User user) {
+        if (user != null) {
+            return ResponseEntity.ok("Esta é uma página segura para " + user.getUsuario());
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acesso não autorizado");
+        }
     }
     
 }

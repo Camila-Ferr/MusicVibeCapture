@@ -4,8 +4,9 @@ document.getElementById("registrationForm").addEventListener("submit", function(
 	const user = {
 		email: document.getElementById("emailR").value,
         usuario: document.getElementById("username").value,
+        nome: document.getElementById("nome").value,
         senha: document.getElementById("password").value,
-        idade: parseInt(document.getElementById("age").value),
+        nascimento: new Date(document.getElementById("nascimento").value),
         musicExp: document.getElementById("music").value
     };
     
@@ -24,3 +25,5 @@ document.getElementById("registrationForm").addEventListener("submit", function(
                 console.error('Erro ao cadastrar usuário:', error);
             });
 });
+
+ 

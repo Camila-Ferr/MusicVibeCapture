@@ -1,5 +1,7 @@
 package br.com.musicsentimental.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +21,10 @@ public class User {
 	@Email
 	private String email;
 	private String usuario;
+	private String nome;
 	private String senha;
-	@Column(name = "idade", nullable = true)
-	private int idade;
+	@Column(name = "nascimento", nullable = true)
+	private Date nascimento;
 	private String musicExp;
 	
 	public long getId() {
@@ -48,17 +51,23 @@ public class User {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public int getIdade() {
-		return idade;
+	public Date getNascimento() {
+		return nascimento;
 	}
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
 	}
 	public String getMusicExp() {
 		return musicExp;
 	}
 	public void setMusicExp(String musicExp) {
 		this.musicExp = musicExp;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }
