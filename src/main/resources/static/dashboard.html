@@ -26,8 +26,36 @@
   <link href="css/dashboard/dash.css" rel="stylesheet" />
   <link href="css/dashboard/material-dashboard.css?v=3.1.0" rel="stylesheet" />
 </head>
-	<header class="header_section d-lg-none">
-      <div class="container-fluid">
+    <body class="g-sidenav-show">
+    <aside class="d-none d-md-block sidenav navbar navbar-vertical navbar-expand-md border-0 border-radius-xl my-3 ms-3 bg-gradient-dark" id="sidenav-main">
+        <div class="sidenav-header">
+	      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-md-none" aria-hidden="true" id="iconSidenav"></i>
+	      <a class="navbar-brand m-0" target="_blank">
+	        <img src="images/logo.png" class="navbar-brand-img h-100" alt="main_logo">
+	        <span class="ms-1 font-weight-bold text-white">Músicas</span>
+	      </a>
+	    </div>
+	    <hr class="horizontal light mt-0 mb-2">
+	    <div class="collapse navbar-collapse w-auto position-dash font" id="sidenav-collapse-main">
+	      <ul class="navbar-nav list-musics">
+	        <li class="nav-item">
+	          <a class="nav-link" href="#">Teste</a>
+	        </li>
+      		</ul>
+	    </div>
+       <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+      <div class="mx-3">
+        <a class="btn btn-outline-primary mt-4 w-100" href="index.html" type="button">Sair</a>
+        <a class="btn bg-gradient-primary w-100" href="ranking.html" type="button">Ranking</a>
+      </div>
+    </div>
+    </aside>
+
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+	<div class="sub_page tm-body">
+			<header class="header_section d-xl-none">
+      <div class="">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="index.html">
             <img src="images/logo.png" alt="" />
@@ -68,45 +96,16 @@
         </nav>
       </div>
     </header>
-    <body>
-	<div class="g-sidenav-show d-none d-md-block">
-    <aside class="sidenav navbar navbar-vertical navbar-expand-md border-0 border-radius-xl my-3 ms-3 bg-gradient-dark" id="sidenav-main">
-        <div class="sidenav-header">
-	      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-md-none" aria-hidden="true" id="iconSidenav"></i>
-	      <a class="navbar-brand m-0" target="_blank">
-	        <img src="images/logo.png" class="navbar-brand-img h-100" alt="main_logo">
-	        <span class="ms-1 font-weight-bold text-white">Músicas</span>
-	      </a>
-	    </div>
-	    <hr class="horizontal light mt-0 mb-2">
-	    <div class="collapse navbar-collapse w-auto position-dash font" id="sidenav-collapse-main">
-	      <ul class="navbar-nav list-musics">
-	        <li class="nav-item">
-	          <a class="nav-link" href="#">Teste</a>
-	        </li>
-      		</ul>
-	    </div>
-       <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-      <div class="mx-3">
-        <a class="btn btn-outline-primary mt-4 w-100" href="index.html" type="button">Sair</a>
-        <a class="btn bg-gradient-primary w-100" href="ranking.html" type="button">Ranking</a>
-      </div>
-    </div>
-    </aside>
-</div>
-
-
-
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-	<div class="sub_page tm-body">
-	<div class="tm-container-fluid">
-		<section class="tm-site-header tm-flex-center tm-border-rounded" style="background-color: transparent; position: relative;">
+	<div class="row min-vh-80">
+        <div class="col-lg-10 col-xl-6 col-sm-10 mx-auto">
+			
+		<section class="tm-site-header tm-flex-center tm-border-rounded tm-p-50" style="background-color: transparent; position: relative;">
     <iframe style="border-radius: 12px; z-index: 1;" id="music" width="100%" height="100%" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     
     <!-- Adicione a imagem avaliacao1 aqui -->
     <img style="position: absolute; top: 70%; left: 80%; height: 50%; z-index: 2;" src="images/avaliacao1.png" alt="Avaliação 1" class="img-fluid d-none d-md-block">
   </section>
-  		<section id="avaliacao-form" class="teste-bg-color tm-border-rounded ">
+  		<section id="avaliacao-form" class=" tm-border-rounded">
 		<div class="tm-about tm-p-50">
 			<div class="tm-about-header tm-flex-center">
 				<i class="fas fa-users fa-2x"></i>
@@ -120,11 +119,8 @@
 				</div>
 			</div>
 		</div>
-		<div class = "row">
-			<div class="col-md-5">
-			<img src="images/avaliacao3.png" class="img-fluid d-none d-md-block" width="90%">
-		</div>
-		  <fieldset class="col-md-6">
+		<div class = "row tm-p-50">
+		  <fieldset class="">
     		<h2>Qual sentimento você associa a música?</h2>
 		    <div class="col-sm-10 mt-3">
 		      <div class="form-check mt-1">
@@ -163,11 +159,12 @@
 		<div class="w-100 bottom-0 ">
 	      <div class="mx-3">
 	        <a class="btn btn-outline-primary mt-4 w-100" id="enviar-avaliacao" type="submit" >Enviar</a>
-	        <a class="btn bg-gradient-primary w-100" id="finalizar" type="submit">Finalizar</a>
+	        <a class="btn bg-gradient-primary w-100 text-white" id="finalizar" type="submit">Finalizar</a>
 	      </div>
      </div>
 
   		</section>
+	</div>
 	</div>
   		 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
@@ -175,8 +172,7 @@
   		<script src="js/bootstrap.js"></script>
     	<script src="js/requisicoes/music.js"></script>
     	<script src="js/jquery-3.4.1.min.js"></script>
-    	<script src="js/custom.js
-    	"></script>
+    	<script src="js/custom.js"></script>
  </div>
  </main>
  </body>

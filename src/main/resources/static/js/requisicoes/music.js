@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 	loadMusicList();
+	
 });
 
 function loadMusic(link,elemento) {
