@@ -77,8 +77,8 @@ public class UserController {
     }
     
     @PostMapping("/sendEmail")
-    public ResponseEntity<Object> sendEmail() {
-    	emailService.sendEmail("Teste", "Fooooiiiiii! Oiii Thi! Bjs");
+    public ResponseEntity<Object> sendEmail(String assunto, String texto) {
+    	emailService.sendEmail(assunto,texto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     
