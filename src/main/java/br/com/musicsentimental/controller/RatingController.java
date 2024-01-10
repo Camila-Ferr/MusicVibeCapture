@@ -1,12 +1,12 @@
 package br.com.musicsentimental.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import br.com.musicsentimental.model.Label;
 import br.com.musicsentimental.model.Music;
 import br.com.musicsentimental.model.Rating;
+import br.com.musicsentimental.model.RatingUserDTO;
 import br.com.musicsentimental.model.User;
 import br.com.musicsentimental.repository.RatingRepository;
 import br.com.musicsentimental.service.RatingService;
@@ -44,12 +45,17 @@ public class RatingController {
     }
     
     @GetMapping("/rankingUsers")
-    public ResponseEntity<String> rankingUsers(@ModelAttribute("user") User user) {
-        if (user != null) {
-            return ResponseEntity.ok("Esta é uma página segura para " + user.getUsuario());
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acesso não autorizado");
+    public ResponseEntity<ArrayList<RatingUserDTO>> rankingUsers() {
+    	List<Object[]> results = repository.findTopUsers();
+    	
+    	ArrayList<RatingUserDTO> ranking = new ArrayList<>();
+    	
+    	for (Object[] result : results) {
+    		RatingUserDTO usuario = new RatingUserDTO((User) result[0],(Long) result[1] );
+    		ranking.add(usuario);
+    		
         }
+        return ResponseEntity.ok(ranking); 
     }
     
 }
