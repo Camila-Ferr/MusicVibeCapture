@@ -1,12 +1,13 @@
 package br.com.musicsentimental.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import br.com.musicsentimental.model.LoginRequest;
 import br.com.musicsentimental.model.User;
 import br.com.musicsentimental.repository.UserRepository;
+import br.com.musicsentimental.service.EmailService;
 import br.com.musicsentimental.service.UserService;
 
 @SessionAttributes("user")
@@ -29,6 +31,9 @@ public class UserController {
     
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private EmailService emailService;
     
     @Autowired
     private HttpSession session;
@@ -58,17 +63,35 @@ public class UserController {
         }
     }
     
-    @GetMapping("/secure-page")
-    public ResponseEntity<String> securePage(@ModelAttribute("user") User user) {
-        if (user != null) {
-            return ResponseEntity.ok("Esta é uma página segura para " + user.getUsuario());
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acesso não autorizado");
-        }
-    }
-    
     @GetMapping("/getSession")
     public HttpSession getSession() {
         return session;
     }
+    
+    @GetMapping("/destroySession")
+    public ResponseEntity<Object> invalidateSession() {
+        if (session != null) {
+            session.invalidate();
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    
+    @PostMapping("/sendEmail")
+    public ResponseEntity<Object> sendEmail() {
+    	emailService.sendEmail("Teste", "Fooooiiiiii! Oiii Thi! Bjs");
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    
+    @GetMapping("/forgotPassword")
+    public ResponseEntity<Object> generatePassword(User user) throws MessagingException {
+        
+    	String password =  RandomStringUtils.random(12,true,true);
+        user.setSenha(password);
+        emailService.recuperaSenha(user);
+        repository.save(user);
+        
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    
+    
 }
