@@ -455,7 +455,6 @@ a:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 25px;
 }
 
 .category_section .category_container .box {

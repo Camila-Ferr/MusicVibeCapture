@@ -1,87 +1,62 @@
 <!DOCTYPE html>
 <html>
-	<head>
-  <!-- Basic -->
+<head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
 
   <title>Login</title>
 
-  <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
   <link href="css/form.css" rel="stylesheet" />
-	</head>
-    <body class="sub_page">
-   <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.html">
-            <img src="images/logo.png" alt="" />
-            <span>
-              MusicVibeCapture
-            </span>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+</head>
+<body class="sub_page">
+	<div class="hero_area">
+		<header class="header_section">
+      		<div class="container-fluid">
+        		
+        		<nav class="navbar navbar-expand-lg custom_nav-container">
+          			<a class="navbar-brand" href="index.html">
+          				<img src="images/logo.png" alt="" />
+            			<span>MusicVibeCapture</span>
+          			</a>
+          			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            			<span class="navbar-toggler-icon"></span>
+          			</button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  ">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html"> Sobre</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="musicas.html">Metas </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="category.html">Cadastre-se</a>
-              </li>
-            </ul>
-            <div class="user_option">
-              <a href="login.html">
-                <span>
-                  Login
-                </span>
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="custom_menu-btn ">
-              <button>
-                <span class=" s-1">
-
-                </span>
-                <span class="s-2">
-
-                </span>
-                <span class="s-3">
-
-                </span>
-              </button>
-            </div>
-          </div>
-
-        </nav>
-      </div>
-    </header>
+          			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+            			<ul class="navbar-nav  ">
+              				<li class="nav-item active">
+                				<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              				</li>
+              				<li class="nav-item">
+                				<a class="nav-link" href="/sobre"> Sobre</a>
+              				</li>
+              				<li class="nav-item">
+                				<a class="nav-link" href="/cadastro">Cadastre-se</a>
+              				</li>
+              				<li class="nav-item">
+                				<a class="nav-link" href="/login">Login</a>
+              				</li>
+            			</ul>
+            		</div>
+          			<div>
+            			<div class="custom_menu-btn ">
+            				<button>
+                				<span class=" s-1"></span>
+                				<span class="s-2"></span>
+                				<span class="s-3"></span>
+                			</button>
+            			</div>
+          			</div>
+        		</nav>
+      		</div>
+    	</header>
    </div>
+   
 	<section class="form">
     <div class="register-photo" style="height: 50%;">
         <div class="form-container">
@@ -93,7 +68,24 @@
                 <div class="form-group"><input class="form-control" type="password" name="senha" id="senha" placeholder="Senha"></div>
                 
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Login</button></div><a href="/cadastro" class="already">Não tem uma conta? Crie aqui.</a>
+                <a href="/changePassword" class="already">Esqueci minha senha.</a>
+                </form>
+        </div>
+    </div>
+    </section>
+    	<section class="form">
+    <div class="register-photo" style="height: 50%;">
+        <div class="form-container">
+            <div class="image-holder"></div>
+            <form method="post" id="loginForm">
+                <h2 class="text-center"><strong>Recuperar minha senha</strong></h2>
+                <div id="SenhaAviso" class="text-danger d-flex justify-content-center"></div>
+                <h2 class="text-center"><strong>Insira seu e-mail cadastrado</strong></h2>
+                <div class="form-group"><input class="form-control" type="email" name="email" id="emailRecuperação" placeholder="Email"></div>
+                <div class="form-group"><input class="form-control" type="password" name="senha" id="senha" placeholder="Senha"></div>
                 
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Login</button></div><a href="/cadastro" class="already">Não tem uma conta? Crie aqui.</a>
+                <a href="/changePassword" class="already">Esqueci minha senha.</a>
                 </form>
         </div>
     </div>
@@ -131,12 +123,10 @@
   </section>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/custom.js"></script>
-  <script src="js/template.js"></script>
    <script src="js/requisicoes/login.js"></script>
    <script src="js/requisicoes/cadastro.js"></script>
 

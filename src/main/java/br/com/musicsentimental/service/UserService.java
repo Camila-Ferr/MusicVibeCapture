@@ -1,6 +1,7 @@
 package br.com.musicsentimental.service;
 
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class UserService {
     public User login(String email, String password) {
 
         User user = userRepository.findByEmail(email);
-        if (user != null && user.getSenha().equals(password)) {
+        if (user != null && user.getSenha().equals(DigestUtils.sha256Hex(password))) {
             return user;
         }
         return null;

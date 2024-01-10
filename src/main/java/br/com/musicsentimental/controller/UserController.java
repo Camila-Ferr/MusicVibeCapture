@@ -3,6 +3,7 @@ package br.com.musicsentimental.controller;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import br.com.musicsentimental.model.EmailDTO;
 import br.com.musicsentimental.model.LoginRequest;
 import br.com.musicsentimental.model.User;
 import br.com.musicsentimental.repository.UserRepository;
@@ -46,7 +48,9 @@ public class UserController {
     @PostMapping("/cadastrar")
     public User cadastrarUsuario(@RequestBody User user) {
     	if (userService.verificacao(user)) {
+    		user.setSenha(DigestUtils.sha256Hex(user.getSenha()));
     		User savedUser = repository.save(user);
+    		
     		return savedUser;
     	}
     	return null;
@@ -77,8 +81,13 @@ public class UserController {
     }
     
     @PostMapping("/sendEmail")
-    public ResponseEntity<Object> sendEmail(String assunto, String texto) {
-    	emailService.sendEmail(assunto,texto);
+    public ResponseEntity<Object> sendEmail(@RequestBody EmailDTO requestEmail) {
+    	if (requestEmail.corpo()!= "") {
+    		emailService.sendEmail(requestEmail.assunto(),requestEmail.corpo());
+    	}
+    	else {
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    	}
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     

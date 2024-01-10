@@ -5,31 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
 
   <title>MusicVibeCapture</title>
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <link href="css/form.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
+   	
+   	<header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="index.html">
-            <img src="images/logo.png" alt="" />
-            <span>
-              MusicVibeCapture
-            </span>
+          	<img src="images/logo.png" alt="" />
+            <span>MusicVibeCapture</span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,44 +32,32 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ">
               <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> Sobre</a>
+                <a class="nav-link" href="/sobre"> Sobre</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="category.html">Cadastre-se</a>
+                <a class="nav-link" href="/cadastro">Cadastre-se</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
               </li>
             </ul>
-            <div class="user_option">
-              <a href="login.html">
-                <span>
-                  Login
-                </span>
-              </a>
-            </div>
           </div>
           <div>
             <div class="custom_menu-btn ">
-              <button>
-                <span class=" s-1">
-
-                </span>
-                <span class="s-2">
-
-                </span>
-                <span class="s-3">
-
-                </span>
-              </button>
+            	<button>
+                	<span class=" s-1"></span>
+                	<span class="s-2"></span>
+                	<span class="s-3"></span>
+                </button>
             </div>
           </div>
-
         </nav>
       </div>
     </header>
-    <!-- end header section -->
-    <!-- slider section -->
+
     <section class="slider_section ">
       <div class="carousel_btn-container">
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -100,12 +82,8 @@
                       <br>Seja um crítico musical virtual 
                     </h1>
                     <div class="btn-box">
-                      <a href="#about_us" class="btn-1">
-                        Sobre nós 
-                      </a>
-                      <a href="" class="btn-2">
-                        Comece agora
-                      </a>
+                      <a href="#about_us" class="btn-1">Sobre nós </a>
+                      <a href="" class="btn-2">Comece agora</a>
                     </div>
                   </div>
                 </div>
@@ -181,9 +159,27 @@
 		</div>
           
   </section>
+    <section class="form">
+	    <div class="register-photo">
+	        <div class="form-container">
+	            	<div class="image-contact"></div>
+	            <form method="post" id="sendEmail">
+	                <h2 class="text-center"><strong>Deixe seu feedback!</strong></h2>
+	               
+	                <div id="emailMessage" class="text-center"></div>
+	                
+	                <div class="form-group"><input class="form-control" name="assunto" id="assunto" placeholder="Assunto"></div>
+	                <textarea class="form-control" name="corpo" id="corpo" placeholder="E-mail" style="height: 120px;"></textarea>
+	                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
+	                
+	                </form>
+	        </div>
+    	</div>
+      </div>
+    </div>
+  </section>
   
-
-  <!-- info section -->
+  
 
   <section class="info_section ">
     <div class="info_container layout_padding-top">
@@ -219,7 +215,7 @@
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/custom.js"></script>
-  <script src="js/template.js"></script>
+  <script src="js/requisicoes/email.js"></script>
 
 
 </body>
