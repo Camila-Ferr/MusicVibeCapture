@@ -38,6 +38,10 @@ public class PagesController {
     public ResponseEntity<String> dashboard() throws IOException {
          	return getResource("static/dashboard.html");
     }
+    @GetMapping("/ranking")
+    public ResponseEntity<String> ranking() throws IOException {
+         	return getResource("static/ranking.html");
+    }
     
     
 	

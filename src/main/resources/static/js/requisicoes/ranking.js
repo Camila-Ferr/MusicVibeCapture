@@ -20,17 +20,17 @@ function loadTable() {
                         <img src="../images/avatar-${index + 1}.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user${index + 1}">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">${item.user.usuario}</h6>
+                        <h6 class="mb-0 text-sm text-white font-table-2">${item.user.usuario}</h6>
                     </div>
                 </div>
             `;
 
             const positionCell = document.createElement('td');
-            positionCell.innerHTML = `<p class="text-xs font-weight-bold mb-0">${index + 1} Lugar</p>`;
+            positionCell.innerHTML = `<p class="text-xs font-weight-bold mb-0 text-white font-table-2">${index + 1} Lugar</p>`;
 
             const quantityCell = document.createElement('td');
             quantityCell.className = 'align-middle text-center text-sm';
-            quantityCell.innerHTML = `<span class="text-secondary text-xs font-weight-bold">${item.quantidade}</span>`;
+            quantityCell.innerHTML = `<span class="text-secondary text-xs font-weight-bold text-white font-table-2">${item.quantidade}</span>`;
 
             newRow.appendChild(avatarCell);
             newRow.appendChild(positionCell);

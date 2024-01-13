@@ -19,10 +19,13 @@ document.getElementById("registrationForm").addEventListener("submit", function(
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Usuário cadastrado:', data);
+                window.location.href = '/dashboard';
             })
             .catch(error => {
-                console.error('Erro ao cadastrar usuário:', error);
+                document.getElementById("error").innerText = "Ocorreu um erro ao criar o usuário. Tente um outro user.";
+                setTimeout(function() {
+					document.getElementById("error").innerText = "";
+				}, 10000);
             });
 });
 

@@ -10,8 +10,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import br.com.musicsentimental.model.User;
-
 @Service
 public class EmailService {
 	
@@ -19,7 +17,7 @@ public class EmailService {
     private String[] toEmails;
 
     @Value("${spring.assigned}")
-    private String[] assigned;
+    private String assigned;
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -33,17 +31,17 @@ public class EmailService {
         javaMailSender.send(message);
     }
     
-    public void recuperaSenha(User user) throws MessagingException {
-    	String htmlMessage = "Caro(a) " + user.getNome() +", <br/> <br/>"+
-    	        " Como solicitado, foi gerada uma nova senha para o seu login.<br/>" +
-    	        "Por favor, use <strong>" + user.getSenha() + "</strong> para logar novamente.<br/> <br/>"+
-    			"<strong>" +assigned +"</strong> ";
+    public void recuperaSenha(String email, String codigo) throws MessagingException {
+    	String htmlMessage = "Caro(a), <br/>"+
+    	        "<br/> Como solicitado, foi gerada um código para possibilitar o reset de senha para o seu login.<br/>" +
+    	        "Código gerado : <strong>" + codigo + "</strong> <br/>"+
+    			"<br/><strong>" +assigned +"</strong> ";
 
     	MimeMessage mimeMessage = javaMailSender.createMimeMessage();
     	MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
     	try {
-    	    messageHelper.setTo(user.getEmail()); 
+    	    messageHelper.setTo(email); 
     	    messageHelper.setSubject("Recuperação de senha");
     	    messageHelper.setFrom("tcc.dataset@application.com");
     	    messageHelper.setText(htmlMessage, true); 

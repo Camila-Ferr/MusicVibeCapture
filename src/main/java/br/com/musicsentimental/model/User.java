@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 @Entity
 @Table(name = "usuario")
 public class User {
@@ -49,7 +51,7 @@ public class User {
 		return senha;
 	}
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = DigestUtils.sha256Hex(senha);
 	}
 	public Date getNascimento() {
 		return nascimento;

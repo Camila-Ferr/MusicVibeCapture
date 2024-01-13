@@ -14,9 +14,36 @@
   border-color: #ff4f5a;
   color: #ff4f5a;
 }
+.background-space {
+	position: relative;
+	background-image: url('../../images/dash.jpeg');
+	background-size: cover;
+	
+}
+.tm-body{
+	background:linear-gradient(#1a2e35, #38CCCC);
+	margin-bottom: 30px;
+	
+}
+.bg-card {
+    background:linear-gradient(#1a2e35, #38CCCC);
+    text:white;
+}
+.tm-body {
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+h2 {
+    color: aliceblue !important;
+}
 
 .font {
       font-size: 22px; 
+}
+.font-table{
+	 font-size: 14px!important; 
+}
+.font-table-2{
+	 font-size: 14px!important; 
 }
 .btn-secondary {
    box-shadow:  #1cbbb4;   
