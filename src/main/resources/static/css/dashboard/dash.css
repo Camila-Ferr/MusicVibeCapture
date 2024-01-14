@@ -1,3 +1,36 @@
+body{
+	    overflow-x: hidden;
+}
+
+.tm-border-rounded {
+    border-radius: 15px;
+}
+
+.tm-about > div {
+    flex: 1 1;
+}
+
+.tm-mb-40 {
+    margin-bottom: 40px;
+}
+
+.tm-p-50 {
+    padding: 50px;
+}
+.tm-site-header {
+    height: 470px;
+}
+
+.tm-about, .tm-contact {
+    display: flex;
+}
+
+.tm-flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .btn-box .btn-1 {
   padding: 10px 0;
   background-color: #ff4f5a;
@@ -34,6 +67,9 @@
 }
 h2 {
     color: aliceblue !important;
+}
+p{
+	color: white;
 }
 
 .font {
