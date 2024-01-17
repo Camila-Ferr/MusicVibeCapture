@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         		var novaUrl = "images/"+novoAvatar;
 
         		imagemPerfil.src = novaUrl;
+        		imagemPerfil.setAttribute("img-id", novoAvatar);
             });
         });
 });
@@ -91,22 +92,22 @@ function returnInfo() {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById("perfil").src= data.avatar != null? "images/"+data.avatar : "images/avatar-1.png";
-        document.getElementById("nome").innerHTML = '<strong class="text-dark">Nome:</strong> &nbsp;' + data.user.nome;
-        document.getElementById("nascimento").innerHTML = '<strong class="text-dark">Data de Nascimento:</strong> &nbsp;' + data.user.nascimento;
-        document.getElementById("email").innerHTML = '<strong class="text-dark">E-mail:</strong> &nbsp;' + data.user.email;
-        document.getElementById("user").innerHTML = '<strong class="text-dark">Nome de Usuário:</strong> &nbsp;' + data.user.usuario;
+        document.getElementById("perfil").src= data.moreInfo.avatar != null? "images/"+data.moreInfo.avatar : "images/avatar-1.png";
+        document.getElementById("nome").innerHTML = '<strong class="text-dark">Nome:</strong> &nbsp;' + data.nome;
+        document.getElementById("nascimento").innerHTML = '<strong class="text-dark">Data de Nascimento:</strong> &nbsp;' + data.nascimento;
+        document.getElementById("email").innerHTML = '<strong class="text-dark">E-mail:</strong> &nbsp;' + data.email;
+        document.getElementById("user").innerHTML = '<strong class="text-dark">Nome de Usuário:</strong> &nbsp;' + data.usuario;
         
-        document.getElementById("genero-texto").textContent = data.genero != null?  data.genero: "";
-        document.getElementById("regiao-texto").textContent = data.regiao != null?  data.regiao: "";
-        document.getElementById("musica-texto").textContent = data.estiloMusical != null?  data.estiloMusical: "";
-        document.getElementById("instrumento-1-texto").textContent = data.instrumentos1 != null?  data.instrumentos1: "";
-        document.getElementById("instrumento-2-texto").textContent = data.instrumentos2 != null?  data.instrumentos2: "";
-        document.getElementById("instrumento-3-texto").textContent = data.instrumentos3 != null?  data.instrumentos3: "";
-        document.getElementById("artista-1-texto").textContent = data.artistasFavorito1 != null?  data.artistasFavorito1: "";
-        document.getElementById("artista-2-texto").textContent = data.artistasFavorito2 != null?  data.artistasFavorito2: "";
-        document.getElementById("artista-3-texto").textContent = data.artistasFavorito3 != null?  data.artistasFavorito3: "";
-        document.getElementById("curiosidade-texto").textContent = data.curiosidade != null?  data.curiosidade: "Conte como começou sua história com a música, se você faz faculdade de música,"+ 
+        document.getElementById("genero-texto").textContent = data.moreInfo.genero != null?  data.moreInfo.genero: "";
+        document.getElementById("regiao-texto").textContent = data.moreInfo.regiao != null?  data.moreInfo.regiao: "";
+        document.getElementById("musica-texto").textContent = data.moreInfo.estiloMusical != null?  data.estiloMusical: "";
+        document.getElementById("instrumento-1-texto").textContent = data.moreInfo.instrumentos1 != null?  data.moreInfo.instrumentos1: "";
+        document.getElementById("instrumento-2-texto").textContent = data.moreInfo.instrumentos2 != null?  data.moreInfo.instrumentos2: "";
+        document.getElementById("instrumento-3-texto").textContent = data.moreInfo.instrumentos3 != null?  data.moreInfo.instrumentos3: "";
+        document.getElementById("artista-1-texto").textContent = data.moreInfo.artistasFavorito1 != null?  data.moreInfo.artistasFavorito1: "";
+        document.getElementById("artista-2-texto").textContent = data.moreInfo.artistasFavorito2 != null?  data.moreInfo.artistasFavorito2: "";
+        document.getElementById("artista-3-texto").textContent = data.moreInfo.artistasFavorito3 != null?  data.moreInfo.artistasFavorito3: "";
+        document.getElementById("curiosidade-texto").textContent = data.moreInfo.curiosidade != null?  data.moreInfo.curiosidade: "Conte como começou sua história com a música, se você faz faculdade de música,"+ 
         																										"se frequenta roda de samba, se gosta de cantar no chuveiro... Sinta-se livre";
         
     })
@@ -114,6 +115,37 @@ function returnInfo() {
         console.error('Erro ao logar usuário:', error);
     });
 }
+function saveInfo() {
+	    const info = {
+			avatar:document.getElementById("perfil").getAttribute("img-id"),
+	        genero: document.getElementById("genero-texto").textContent,
+	        regiao: document.getElementById("regiao-texto").textContent,
+	        estiloMusical: document.getElementById("musica-texto").textContent,
+	        artistasFavorito1: document.getElementById("artista-1-texto").textContent,
+	        artistasFavorito2:document.getElementById("artista-2-texto").textContent,
+	        artistasFavorito3:document.getElementById("artista-3-texto").textContent,
+	        instrumentos1: document.getElementById("instrumento-1-texto").textContent,
+	        instrumentos2: document.getElementById("instrumento-2-texto").textContent,
+	        instrumentos3: document.getElementById("instrumento-3-texto").textContent,
+	        curiosidade:  document.getElementById("curiosidade-texto").textContent
+        };
+	
+        fetch('/usuarios/saveInfo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(info)
+    })
+    .then(response => response.json())
+    .then(data => {
+       console.error('Foi');
+    })
+    .catch(error => {
+        console.error('Erro ao salvar as informações:', error);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	returnInfo();
 	});    
