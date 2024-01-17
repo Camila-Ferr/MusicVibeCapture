@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import br.com.musicsentimental.model.EmailDTO;
 import br.com.musicsentimental.model.LoginRequest;
+import br.com.musicsentimental.model.MoreInfo;
 import br.com.musicsentimental.model.NovaSenhaDto;
 import br.com.musicsentimental.model.User;
+import br.com.musicsentimental.repository.MoreInfoRepository;
 import br.com.musicsentimental.repository.UserRepository;
 import br.com.musicsentimental.service.EmailService;
+import br.com.musicsentimental.service.SessionService;
 import br.com.musicsentimental.service.UserService;
 
 @SessionAttributes("user")
@@ -30,6 +33,9 @@ public class UserController {
     
     @Autowired
     private UserRepository repository;
+    
+    @Autowired
+    private MoreInfoRepository moreRepository;
     
     @Autowired
     private UserService userService;
@@ -48,7 +54,6 @@ public class UserController {
     @PostMapping("/cadastrar")
     public User cadastrarUsuario(@RequestBody User user) {
     	if (userService.verificacao(user)) {
-    		user.setSenha(user.getSenha());
     		User savedUser = repository.save(user);
     		session.setAttribute("user", user);
     		
@@ -133,6 +138,23 @@ public class UserController {
     	return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     	
     }
+    
+    @GetMapping("/returnInfo")
+    public ResponseEntity<Object> returnInfo() throws MessagingException {
+        User user = (User) session.getAttribute("user");
+        MoreInfo moreInfo = null;
+
+        if (user != null) {
+            moreInfo = moreRepository.findByUser(user);
+
+            if (moreInfo == null) {
+            	moreInfo = new MoreInfo();
+            	moreInfo.setUser(user);
+            }
+        }
+        return ResponseEntity.ok(moreInfo);
+    }
+    
    
     
     

@@ -42,6 +42,10 @@ public class PagesController {
     public ResponseEntity<String> ranking() throws IOException {
          	return getResource("static/ranking.html");
     }
+    @GetMapping("/profile")
+    public ResponseEntity<String> profile() throws IOException {
+         	return getResource("static/profile.html");
+    }
     
     
 	

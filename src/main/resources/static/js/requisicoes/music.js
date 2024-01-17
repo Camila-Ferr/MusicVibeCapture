@@ -66,8 +66,6 @@ function envioAvaliacao(proximo) {
         adicional: document.getElementById("opniao").value
     };
 	
-    console.log(avaliacao.music);
-    console.log(avaliacao.label);
 
     fetch('/rating/saveAvaliacao', {
         method: 'POST',
@@ -84,14 +82,9 @@ function envioAvaliacao(proximo) {
 
         if (proximo === true) {
 			loadMusicList();
-        } else {
-             window.location.href = '/';
         }
     })
     .catch(error => {
-		if (proximo == false){
-			window.location.href = '/';
-		}
         console.error('Erro ao logar usuário:', error);
     });
 }
@@ -99,7 +92,6 @@ function envioAvaliacao(proximo) {
 
 document.getElementById("enviar-avaliacao").addEventListener("click", function() {
     event.preventDefault();
-    console.log("Aqui");
     envioAvaliacao(true);
 	
 });
@@ -107,4 +99,6 @@ document.getElementById("enviar-avaliacao").addEventListener("click", function()
 document.getElementById("finalizar").addEventListener("click", function() {
     event.preventDefault();
     envioAvaliacao(false);
+    
 });
+
