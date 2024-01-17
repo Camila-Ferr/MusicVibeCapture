@@ -875,6 +875,11 @@ a:focus {
   -webkit-transform: rotate(-45deg) translate(8px, -8px);
           transform: rotate(-45deg) translate(8px, -8px);
 }
-
+.form-group {
+    margin-bottom: 1rem;
+}
+.btn-block {
+    width: 100%;
+}
 
 /*# sourceMappingURL=style.css.map */
