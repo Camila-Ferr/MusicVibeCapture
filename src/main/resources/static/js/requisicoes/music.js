@@ -76,7 +76,6 @@ function envioAvaliacao(proximo) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Foi');
         document.getElementById("opniao").value = "";
         document.querySelector('input[name="gridRadios"]:checked').checked = false;
 

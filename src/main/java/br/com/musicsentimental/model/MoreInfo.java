@@ -4,20 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "info_adicionais")
 public class MoreInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 	private String genero;
     private String regiao;
     private String avatar;
@@ -73,12 +68,6 @@ public class MoreInfo {
 	public void setArtistasFavorito3(String artistasFavorito3) {
 		this.artistasFavorito3 = artistasFavorito3;
 	}
-    public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
 	public String getAvatar() {
 		return avatar;
 	}
@@ -102,6 +91,19 @@ public class MoreInfo {
 	}
 	public void setRegiao(String regiao) {
 		this.regiao = regiao;
+	}
+	
+	public void setMoreInfo( String genero,String regiao,String avatar,String estiloMusical,String artistasFavorito1,String artistasFavorito2,String artistasFavorito3, String instrumentos1,String instrumentos2,String instrumentos3,String curiosidade) {
+		this.genero = genero;
+		this.regiao = regiao;
+		this.avatar = avatar;
+		this.artistasFavorito1 = artistasFavorito1;
+		this.artistasFavorito2 = artistasFavorito2;
+		this.artistasFavorito3 = artistasFavorito3;
+		this.instrumentos1 = instrumentos1;
+		this.instrumentos2 = instrumentos2;
+		this.instrumentos3 = instrumentos3;
+		this.curiosidade=curiosidade;
 	}
     
 	

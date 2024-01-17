@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
@@ -28,6 +30,9 @@ public class User {
 	@Column(name = "nascimento", nullable = true)
 	private Date nascimento;
 	private String musicExp;
+	@OneToOne
+    @JoinColumn(name = "moreInfo_id")
+	private MoreInfo moreInfo;
 	
 	public long getId() {
 		return id;
@@ -70,6 +75,12 @@ public class User {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public MoreInfo getMoreInfo() {
+		return moreInfo;
+	}
+	public void setMoreInfo(MoreInfo moreInfo) {
+		this.moreInfo = moreInfo;
 	}
 
 }

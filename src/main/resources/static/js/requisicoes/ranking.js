@@ -12,12 +12,13 @@ function loadTable() {
     .then(data => {
         data.forEach((item, index) => {
             const newRow = document.createElement('tr');
+            const avatar = item.user.moreInfo.avatar != null? data.moreInfo.avatar : "avatar-1.png";
 
             const avatarCell = document.createElement('td');
             avatarCell.innerHTML = `
                 <div class="d-flex px-2 py-1">
                     <div>
-                        <img src="../images/avatar-${index + 1}.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user${index + 1}">
+                        <img src="../images/${avatar}" class="avatar avatar-sm me-3 border-radius-lg" alt="user${index + 1}">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm text-white font-table-2">${item.user.usuario}</h6>
