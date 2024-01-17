@@ -15,9 +15,98 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Foi');
+                window.location.href = '/dashboard';
             })
             .catch(error => {
-                console.error('Erro ao logar usuário:', error);
+                document.getElementById("loginError").innerText = "Usuário ou senha incorretos.";
             });
 });
+
+function forgetPassword() {
+
+    document.getElementById("loginForm").classList.add("d-none");
+    document.getElementById("senhaRec").classList.remove("d-none");
+    
+}
+
+document.getElementById("senhaRec").addEventListener("submit", function(event) {
+	event.preventDefault();
+	
+		  document.getElementById("carregando").classList.remove("d-none");
+		  
+          const emailDTO = {
+                email: document.getElementById("emailRecuperação").value
+            };
+    
+    
+    fetch('/usuarios/forgetPassword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(emailDTO)
+            })
+            .then(response => {
+				document.getElementById("carregando").classList.add("d-none");
+            	if (response.ok) {
+					console.log();
+					document.getElementById("senhaRec").classList.add("d-none");
+    				document.getElementById("confirmarCodigo").classList.remove("d-none");
+    			}
+            	else {
+                	document.getElementById("SenhaAviso").innerText = "Ocorreu um erro ao enviar o e-mail. Tente novamente";
+            	 }
+  			})
+  			.catch(error => {
+				  document.getElementById("SenhaAviso").innerText = "Ocorreu um erro ao enviar o e-mail. Tente novamente";
+  			});
+  	});
+  	
+  document.getElementById("confirmarCodigo").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const codigoDTO = {
+        codigo: document.getElementById("codigoRecuperação").value
+    };
+    
+    fetch('/usuarios/confirmCode', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(codigoDTO)
+    })
+    .then(response => {
+    if (response.ok) {
+        document.getElementById("confirmarCodigo").classList.add("d-none");
+        document.getElementById("redefinir").classList.remove("d-none");
+    }
+    else{
+        document.getElementById("codAviso").innerText = "Ocorreu um erro ao comparar o código. Tente novamente";
+    }});
+});
+  document.getElementById("redefinir").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    if (document.getElementById("novaSenha").value === document.getElementById("novaSenhaConf").value) {
+    
+	    const novaSenha = {
+	        novaSenha: document.getElementById("novaSenhaConf").value
+	    };
+    
+    	fetch('/usuarios/changePassword', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json'
+        },
+        	body: JSON.stringify(novaSenha)
+    	})
+    	.then(response => {
+    	if (response.ok) {
+			console.log("aq");
+			document.getElementById("avisoReset").innerText = "Sucesso ao alterar a senha";
+    	}
+    });
+    }else{
+        document.getElementById("avisoReset").innerText = "Ocorreu um erro ao comparar as senhas. Tente novamente";
+    }});

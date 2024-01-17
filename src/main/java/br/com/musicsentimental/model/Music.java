@@ -13,6 +13,7 @@ public class Music {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String link;
+	private String nome;
 	private int avaliacoes;
 	
 	public String getLink() {
@@ -26,6 +27,12 @@ public class Music {
 	}
 	public void setAvaliacoes(int avaliacoes) {
 		this.avaliacoes = avaliacoes;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 

@@ -24,6 +24,7 @@ public class Rating {
 	
 	@Column(name = "label_rotulo")
 	private String sentimento;
+	@Column(name = "adicional", nullable = true)
 	private String adicional;
 	
 	public Rating (User user, Music music, Label sentimento, String adicional) {

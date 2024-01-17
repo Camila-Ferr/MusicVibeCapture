@@ -1,12 +1,13 @@
 package br.com.musicsentimental.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import br.com.musicsentimental.model.EmailDTO;
 import br.com.musicsentimental.model.LoginRequest;
+import br.com.musicsentimental.model.MoreInfo;
+import br.com.musicsentimental.model.NovaSenhaDto;
 import br.com.musicsentimental.model.User;
+import br.com.musicsentimental.repository.MoreInfoRepository;
 import br.com.musicsentimental.repository.UserRepository;
+import br.com.musicsentimental.service.EmailService;
+import br.com.musicsentimental.service.SessionService;
 import br.com.musicsentimental.service.UserService;
 
 @SessionAttributes("user")
@@ -28,7 +35,13 @@ public class UserController {
     private UserRepository repository;
     
     @Autowired
+    private MoreInfoRepository moreRepository;
+    
+    @Autowired
     private UserService userService;
+    
+    @Autowired
+    private EmailService emailService;
     
     @Autowired
     private HttpSession session;
@@ -42,6 +55,8 @@ public class UserController {
     public User cadastrarUsuario(@RequestBody User user) {
     	if (userService.verificacao(user)) {
     		User savedUser = repository.save(user);
+    		session.setAttribute("user", user);
+    		
     		return savedUser;
     	}
     	return null;
@@ -58,17 +73,89 @@ public class UserController {
         }
     }
     
-    @GetMapping("/secure-page")
-    public ResponseEntity<String> securePage(@ModelAttribute("user") User user) {
-        if (user != null) {
-            return ResponseEntity.ok("Esta é uma página segura para " + user.getUsuario());
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acesso não autorizado");
-        }
-    }
-    
     @GetMapping("/getSession")
     public HttpSession getSession() {
         return session;
     }
+    
+    @GetMapping("/destroySession")
+    public ResponseEntity<Object> invalidateSession() {
+        if (session != null) {
+            session.invalidate();
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    
+    @PostMapping("/sendEmail")
+    public ResponseEntity<Object> sendEmail(@RequestBody EmailDTO requestEmail) {
+    	if (requestEmail.corpo()!= "") {
+    		emailService.sendEmail(requestEmail.assunto(),requestEmail.corpo());
+    	}
+    	else {
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    	}
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    
+    @PostMapping("/forgetPassword")
+    public ResponseEntity<Object> generatePassword(@RequestBody NovaSenhaDto requestEmail) throws MessagingException {
+    	
+    	User user = repository.findByEmail(requestEmail.email());
+    	if (user!= null) {
+			String codigo = RandomStringUtils.random(12, true, true);
+			emailService.recuperaSenha(requestEmail.email(), codigo);
+			session.setAttribute("codigo", codigo);
+			session.setAttribute("email", requestEmail.email());
+			return ResponseEntity.status(HttpStatus.OK).build();
+			
+    	}
+    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    	
+    }
+    
+    @PostMapping("/confirmCode")
+    public ResponseEntity<Object> confirmCode(@RequestBody NovaSenhaDto codigoDigitado) throws MessagingException {
+    	String codigo = (String) session.getAttribute("codigo");
+    	if (codigoDigitado.codigo().equals(codigo)) {
+    		session.removeAttribute("codigo");
+    		return ResponseEntity.status(HttpStatus.OK).build();
+    	}
+	    
+    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    	
+    }
+    
+    @PostMapping("/changePassword")
+    public ResponseEntity<Object> changePassword(@RequestBody NovaSenhaDto senha) throws MessagingException {
+    	User user = repository.findByEmail((String)session.getAttribute("email"));
+    	if (user != null) {
+	    	session.removeAttribute("email");
+	    	user.setSenha(senha.novaSenha());
+	    	repository.save(user);
+	    	return ResponseEntity.status(HttpStatus.OK).build();
+    	}
+	    
+    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    	
+    }
+    
+    @GetMapping("/returnInfo")
+    public ResponseEntity<Object> returnInfo() throws MessagingException {
+        User user = (User) session.getAttribute("user");
+        MoreInfo moreInfo = null;
+
+        if (user != null) {
+            moreInfo = moreRepository.findByUser(user);
+
+            if (moreInfo == null) {
+            	moreInfo = new MoreInfo();
+            	moreInfo.setUser(user);
+            }
+        }
+        return ResponseEntity.ok(moreInfo);
+    }
+    
+   
+    
+    
 }

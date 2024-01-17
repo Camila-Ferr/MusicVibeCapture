@@ -7,8 +7,11 @@ import br.com.musicsentimental.model.Music;
 
 @Repository
 public interface MusicRepository extends JpaRepository<Music, Long> {
-    Music findFirstByOrderByAvaliacoesAsc();
     
     Music findByLink(String link);
+
+
+    
+
 }
 
