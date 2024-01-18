@@ -696,8 +696,7 @@ a:focus {
 .info_section .info_top .social_box a img {
   width: auto;
   height: auto;
-  max-width: 30px;
-  max-height: 30px;
+  max-width: 80px;
 }
 
 .info_section a {

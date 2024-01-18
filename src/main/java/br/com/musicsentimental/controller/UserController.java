@@ -54,6 +54,11 @@ public class UserController {
     public User cadastrarUsuario(@RequestBody User user) {
     	
     	if (userService.verificacao(user)) {
+    		
+    		MoreInfo moreInfo = new MoreInfo();
+    		user.setMoreInfo(moreInfo);
+    		moreRepository.save(moreInfo);
+    		
     		User savedUser = repository.save(user);
     		session.setAttribute("user", user);
     		
@@ -142,13 +147,6 @@ public class UserController {
     @GetMapping("/returnInfo")
     public ResponseEntity<Object> returnInfo() throws MessagingException {
         User user = (User) session.getAttribute("user");
-        
-        if (user.getMoreInfo() == null) {
-        	MoreInfo moreInfo = new MoreInfo();
-        	user.setMoreInfo(moreInfo);
-        	return ResponseEntity.ok(user);
-        }
-        
         return ResponseEntity.ok(user);
     	
     }
@@ -157,18 +155,10 @@ public class UserController {
     public ResponseEntity<Object> saveInfo(@RequestBody MoreInfo moreInfo) throws MessagingException {
     	User user = (User) session.getAttribute("user");
     	
-    	if (user.getMoreInfo() == null) {
-    		user.setMoreInfo(moreInfo);
-    		moreRepository.save(moreInfo);
-    		repository.save(user);
-
-    		return ResponseEntity.ok(moreInfo);
-    	}else {
-    		MoreInfo info = user.getMoreInfo();
-    		info.setMoreInfo(moreInfo.getGenero(), moreInfo.getRegiao(), moreInfo.getAvatar(), moreInfo.getEstiloMusical(), moreInfo.getArtistasFavorito1(), moreInfo.getArtistasFavorito2(), moreInfo.getArtistasFavorito3(), moreInfo.getInstrumentos1(), moreInfo.getInstrumentos2(), moreInfo.getArtistasFavorito3(), moreInfo.getCuriosidade());
-    		moreRepository.save(info);
-    		return ResponseEntity.ok(info);
-    	}
+    	MoreInfo info = user.getMoreInfo();
+    	info.setMoreInfo(moreInfo.getGenero(), moreInfo.getRegiao(), moreInfo.getAvatar(), moreInfo.getEstiloMusical(), moreInfo.getArtistasFavorito1(), moreInfo.getArtistasFavorito2(), moreInfo.getArtistasFavorito3(), moreInfo.getInstrumentos1(), moreInfo.getInstrumentos2(), moreInfo.getArtistasFavorito3(), moreInfo.getCuriosidade());
+    	moreRepository.save(info);
+    	return ResponseEntity.ok(info);
     }
 }
    

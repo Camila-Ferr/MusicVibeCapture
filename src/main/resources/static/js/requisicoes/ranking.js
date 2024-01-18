@@ -12,7 +12,7 @@ function loadTable() {
     .then(data => {
         data.forEach((item, index) => {
             const newRow = document.createElement('tr');
-            const avatar = item.user.moreInfo.avatar != null? data.moreInfo.avatar : "avatar-1.png";
+            const avatar = item.user.moreInfo.avatar != null? item.user.moreInfo.avatar : "avatar-1.png";
 
             const avatarCell = document.createElement('td');
             avatarCell.innerHTML = `
