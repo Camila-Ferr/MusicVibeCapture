@@ -87,6 +87,7 @@ public class UserController {
     public ResponseEntity<Object> invalidateSession() {
         if (session != null) {
             session.invalidate();
+
         }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -156,7 +157,7 @@ public class UserController {
     	User user = (User) session.getAttribute("user");
     	
     	MoreInfo info = user.getMoreInfo();
-    	info.setMoreInfo(moreInfo.getGenero(), moreInfo.getRegiao(), moreInfo.getAvatar(), moreInfo.getEstiloMusical(), moreInfo.getArtistasFavorito1(), moreInfo.getArtistasFavorito2(), moreInfo.getArtistasFavorito3(), moreInfo.getInstrumentos1(), moreInfo.getInstrumentos2(), moreInfo.getArtistasFavorito3(), moreInfo.getCuriosidade());
+    	info.setMoreInfo(moreInfo.getGenero(), moreInfo.getRegiao(), moreInfo.getAvatar(), moreInfo.getEstiloMusical(), moreInfo.getArtistasFavorito1(), moreInfo.getArtistasFavorito2(), moreInfo.getArtistasFavorito3(), moreInfo.getInstrumentos1(), moreInfo.getInstrumentos2(), moreInfo.getInstrumentos3(), moreInfo.getCuriosidade());
     	moreRepository.save(info);
     	return ResponseEntity.ok(info);
     }

@@ -177,3 +177,10 @@ p{
 .active{
 	color: #e91e63;
 }
+.tm-about-text{
+	background-color: aliceblue; 
+	border-radius: 10px; 
+}
+.blur {
+    background-color: hsla(0,0%,100%,.8)!important;
+}

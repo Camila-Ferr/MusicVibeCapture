@@ -62,7 +62,7 @@ function envioAvaliacao(proximo) {
 
     const avaliacao = {
         music: document.getElementById("music").getAttribute("src"),
-        label: document.querySelector('input[name="gridRadios"]:checked + label p option').value,
+        label: document.querySelector('.sentimento.active').getAttribute('value'),
         adicional: document.getElementById("opniao").value
     };
 	
@@ -77,7 +77,7 @@ function envioAvaliacao(proximo) {
     .then(response => response.json())
     .then(data => {
         document.getElementById("opniao").value = "";
-        document.querySelector('input[name="gridRadios"]:checked').checked = false;
+        document.querySelector('.sentimento.active').classList.remove('active');
 
         if (proximo === true) {
 			loadMusicList();
@@ -101,3 +101,18 @@ document.getElementById("finalizar").addEventListener("click", function() {
     
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+        var buttons = document.querySelectorAll('.sentimento');
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                buttons.forEach(function (btn) {
+                    btn.classList.remove('active');
+                    btn.classList.replace('bg-gradient-light','bg-gradient-secondary');
+                });
+
+                button.classList.add('active');
+                button.classList.replace('bg-gradient-secondary','bg-gradient-light');
+            });
+        });
+    });

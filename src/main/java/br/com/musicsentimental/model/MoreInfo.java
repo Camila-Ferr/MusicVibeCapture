@@ -97,6 +97,7 @@ public class MoreInfo {
 		this.genero = genero;
 		this.regiao = regiao;
 		this.avatar = avatar;
+		this.estiloMusical = estiloMusical;
 		this.artistasFavorito1 = artistasFavorito1;
 		this.artistasFavorito2 = artistasFavorito2;
 		this.artistasFavorito3 = artistasFavorito3;

@@ -1,5 +1,6 @@
 document.getElementById("sendEmail").addEventListener("submit", function(event) {
     event.preventDefault(); 
+    document.getElementById("carregando").classList.remove('d-none');
 	
 	const email = {
 		assunto:  document.getElementById("assunto").value,
@@ -15,6 +16,7 @@ document.getElementById("sendEmail").addEventListener("submit", function(event) 
         body: JSON.stringify(email),
     })
     .then(response => {
+		document.getElementById("carregando").classList.add('d-none');
         if (!response.ok) {
 			document.getElementById("emailMessage").classList.add("text-danger")
 			document.getElementById("emailMessage").innerText = "Erro ao enviar o email";
