@@ -5,23 +5,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function loadMusic(link,elemento) {
 	const activeElements = document.querySelectorAll('.active');
-    	activeElements.forEach(element => {
+	const elementoAtivo = document.querySelector('.sentimento.active');
+
+	if (elementoAtivo) {
+  		elementoAtivo.classList.replace('bg-gradient-light', 'bg-gradient-secondary');
+	} 
+
+    activeElements.forEach(element => {
         element.classList.remove('active');
     });
-	 elemento.classList.add('active');
+    elemento.classList.add('active');
     document.getElementById("music").setAttribute("src", link);
 };
 
 function loadMusicList() {
+	
     const navbarNav = document.querySelector('.list-musics');
-    console.log(navbarNav);
 
     fetch('/music/musicsUsers', {
         method: 'GET',
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
 
         const ul = document.createElement('ul');
         ul.classList.add('navbar-nav');
@@ -65,6 +70,9 @@ function envioAvaliacao(proximo) {
         label: document.querySelector('.sentimento.active').getAttribute('value'),
         adicional: document.getElementById("opniao").value
     };
+    document.querySelector('.sentimento.active').classList.replace('bg-gradient-light','bg-gradient-secondary');
+    document.querySelector('.sentimento.active').classList.remove('active');
+    
 	
 
     fetch('/rating/saveAvaliacao', {
@@ -77,14 +85,13 @@ function envioAvaliacao(proximo) {
     .then(response => response.json())
     .then(data => {
         document.getElementById("opniao").value = "";
-        document.querySelector('.sentimento.active').classList.remove('active');
 
         if (proximo === true) {
 			loadMusicList();
         }
     })
     .catch(error => {
-        console.error('Erro ao logar usuário:', error);
+        console.error('Erro ao enviar avaliação:', error);
     });
 }
 
