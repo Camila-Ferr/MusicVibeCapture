@@ -21,7 +21,7 @@
               					<img src="images/linkedin_thiago.png" alt="">
             				</a>
 							<a href="">
-			  					<img src="images/github.png" alt="" style="width: 10000px;">
+			  					<img src="images/github.png" href="https://github.com/Camila-Ferr/MusicVibeCapture" style="width: 10000px;">
 							</a>
 
           				</div>
