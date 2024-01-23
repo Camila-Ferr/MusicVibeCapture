@@ -8,7 +8,7 @@ document.getElementById("sendEmail").addEventListener("submit", function(event) 
      };
             
 
-    fetch('/usuarios/sendEmail', {
+    fetch('/mail/sendEmail', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

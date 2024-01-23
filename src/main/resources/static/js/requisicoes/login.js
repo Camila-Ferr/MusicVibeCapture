@@ -25,7 +25,7 @@ document.getElementById("senhaRec").addEventListener("submit", function(event) {
             };
     
     
-    fetch('/usuarios/forgetPassword', {
+    fetch('/mail/forgetPassword', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ document.getElementById("senhaRec").addEventListener("submit", function(event) {
         codigo: document.getElementById("codigoRecuperação").value
     };
     
-    fetch('/usuarios/confirmCode', {
+    fetch('/mail/confirmCode', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ document.getElementById("senhaRec").addEventListener("submit", function(event) {
 	        novaSenha: document.getElementById("novaSenhaConf").value
 	    };
     
-    	fetch('/usuarios/changePassword', {
+    	fetch('/mail/changePassword', {
 	        method: 'POST',
 	        headers: {
 	            'Content-Type': 'application/json'
