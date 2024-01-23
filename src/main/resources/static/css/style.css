@@ -3,6 +3,15 @@ body {
   color: #0c0c0c;
   background-color: #ffffff;
 }
+.signature {
+  font-family: "Courgette", cursive;
+  font-size: 18px;
+  color: rgb(255, 255, 255); 
+  line-height: 1.2; 
+  letter-spacing: 1px; 
+  margin: 0; 
+  padding: 0; 
+}
 
 .layout_padding {
   padding-top: 90px;

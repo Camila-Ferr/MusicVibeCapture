@@ -45,7 +45,7 @@
           					</a>
         				</li>
         				<li class="nav-item">
-          					<a class="nav-link text-white " href="#" onclick="logout()">
+          					<a class="nav-link text-white " href="/logout">
             					<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               						<i class="material-icons opacity-10">assignment</i>
             					</div>
@@ -58,7 +58,7 @@
       				<div class="mx-3">
       				${isDashboard ? `<a class="btn bg-gradient-primary mt-4 w-100" href="/ranking" type="button">Ranking</a>` : 
         				`<a class="btn bg-gradient-primary mt-4 w-100" href="/dashboard" type="button">Músicas</a>`}
-        				<a class="btn btn-outline-primary w-100" href="#" onclick="logout()" type="button">Sair</a>
+        				<a class="btn btn-outline-primary w-100" href="/logout" type="button">Sair</a>
       				</div>
     			</div>
   			</aside>`;

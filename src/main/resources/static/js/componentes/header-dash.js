@@ -28,6 +28,9 @@
                 		<li class="nav-item">
                   			<a class="nav-link me-2" href="/profile">Profile</a>
                 		</li>
+                		<li class="nav-item">
+                  			<a class="nav-link me-2" href="/logout">Sair</a>
+                		</li>
                 	</ul>
             	</div>
           	</div>

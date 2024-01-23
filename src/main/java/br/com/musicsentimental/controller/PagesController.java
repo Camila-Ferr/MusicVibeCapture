@@ -46,6 +46,10 @@ public class PagesController {
     public ResponseEntity<String> profile() throws IOException {
          	return getResource("static/profile.html");
     }
+    @GetMapping("/sobre")
+    public ResponseEntity<String> sobre() throws IOException {
+         	return getResource("static/sobre.html");
+    }
     
     
 	

@@ -7,16 +7,16 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import br.com.musicsentimental.model.EmailDTO;
-import br.com.musicsentimental.model.LoginRequest;
 import br.com.musicsentimental.model.MoreInfo;
 import br.com.musicsentimental.model.NovaSenhaDto;
 import br.com.musicsentimental.model.User;
@@ -25,7 +25,7 @@ import br.com.musicsentimental.repository.UserRepository;
 import br.com.musicsentimental.service.EmailService;
 import br.com.musicsentimental.service.UserService;
 
-@SessionAttributes("user")
+
 @RestController
 @RequestMapping(value = "/usuarios")
 public class UserController {
@@ -65,31 +65,6 @@ public class UserController {
     		return savedUser;
     	}
     	return null;
-    }
-    
-    @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest) {
-        User user = userService.login(loginRequest.getEmail(), loginRequest.getPassword());
-        if (user != null) {
-        	session.setAttribute("user", user);
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-    }
-    
-    @GetMapping("/getSession")
-    public HttpSession getSession() {
-        return session;
-    }
-    
-    @GetMapping("/destroySession")
-    public ResponseEntity<Object> invalidateSession() {
-        if (session != null) {
-            session.invalidate();
-
-        }
-        return ResponseEntity.status(HttpStatus.OK).build();
     }
     
     @PostMapping("/sendEmail")
@@ -147,14 +122,18 @@ public class UserController {
     
     @GetMapping("/returnInfo")
     public ResponseEntity<Object> returnInfo() throws MessagingException {
-        User user = (User) session.getAttribute("user");
+    	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	User user = (User) authentication.getPrincipal();
         return ResponseEntity.ok(user);
     	
     }
     
     @PostMapping("/saveInfo")
     public ResponseEntity<Object> saveInfo(@RequestBody MoreInfo moreInfo) throws MessagingException {
-    	User user = (User) session.getAttribute("user");
+    	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	User user = (User) authentication.getPrincipal();
     	
     	MoreInfo info = user.getMoreInfo();
     	info.setMoreInfo(moreInfo.getGenero(), moreInfo.getRegiao(), moreInfo.getAvatar(), moreInfo.getEstiloMusical(), moreInfo.getArtistasFavorito1(), moreInfo.getArtistasFavorito2(), moreInfo.getArtistasFavorito3(), moreInfo.getInstrumentos1(), moreInfo.getInstrumentos2(), moreInfo.getInstrumentos3(), moreInfo.getCuriosidade());

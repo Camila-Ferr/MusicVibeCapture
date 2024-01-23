@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 });
 
-function loadMusic(link,elemento) {
+function loadMusic(link,musica) {
 	const activeElements = document.querySelectorAll('.active');
 	const elementoAtivo = document.querySelector('.sentimento.active');
 
@@ -14,7 +14,7 @@ function loadMusic(link,elemento) {
     activeElements.forEach(element => {
         element.classList.remove('active');
     });
-    elemento.classList.add('active');
+    musica.classList.add('active');
     document.getElementById("music").setAttribute("src", link);
 };
 
@@ -27,15 +27,16 @@ function loadMusicList() {
     })
     .then(response => response.json())
     .then(data => {
-
+		document.getElementById("music").setAttribute("src", data[0].link);
+		
         const ul = document.createElement('ul');
         ul.classList.add('navbar-nav');
 
-        data.forEach(music => {
+        data.forEach((music, index) => {
             const nav = document.createElement('li');
             nav.classList.add('nav-item');
             
-            nav.dataset.id = music.id; 
+            nav.dataset.id = index + 1; 
 
             const a = document.createElement('a');
             a.classList.add('nav-link');
@@ -49,6 +50,11 @@ function loadMusicList() {
             a.textContent = music.nome; 
             
             a.setAttribute('onclick', `loadMusic('${music.link}', this)`);
+            
+            if (index === 0) {
+                a.classList.add('active');
+            }
+
              
             nav.appendChild(a);
             a.appendChild(span);
@@ -56,13 +62,35 @@ function loadMusicList() {
         });
 
         navbarNav.innerHTML = ul.innerHTML;
-        document.getElementById("music").setAttribute("src", data[0].link);
     })
     .catch(error => {
         console.error('Erro ao carregar a lista de músicas:', error);
     });
 }
+function navigate(direction) {
+    const activeElement = document.querySelector('.nav-link.active');
 
+    if (activeElement) {
+        let targetElement;
+
+        if (direction === 'previous') {
+            targetElement = activeElement.parentElement.previousElementSibling;
+        } else if (direction === 'next') {
+            targetElement = activeElement.parentElement.nextElementSibling;
+        }
+
+        if (targetElement) {
+            targetElement.querySelector('.nav-link').click();
+        }
+    }
+}
+document.getElementById("anterior").addEventListener("click", function() {
+    navigate('previous');
+});
+
+document.getElementById("proximo").addEventListener("click", function() {
+    navigate('next');
+});
 function envioAvaliacao(proximo) {
 
     const avaliacao = {
@@ -87,14 +115,14 @@ function envioAvaliacao(proximo) {
         document.getElementById("opniao").value = "";
 
         if (proximo === true) {
-			loadMusicList();
-        }
-    })
-    .catch(error => {
-        console.error('Erro ao enviar avaliação:', error);
-    });
-}
-
+			document.querySelector('.nav-link.active').parentElement.classList.add('d-none');
+			navigate('next');
+		}
+		else{
+                window.location.href = '/logout';
+            }
+	});
+};
 
 document.getElementById("enviar-avaliacao").addEventListener("click", function() {
     event.preventDefault();
@@ -104,7 +132,7 @@ document.getElementById("enviar-avaliacao").addEventListener("click", function()
 
 document.getElementById("finalizar").addEventListener("click", function() {
     event.preventDefault();
-    envioAvaliacao(false);
+    envioAvaliacao(false)
     
 });
 
@@ -113,13 +141,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         buttons.forEach(function (button) {
             button.addEventListener('click', function () {
-                buttons.forEach(function (btn) {
-                    btn.classList.remove('active');
-                    btn.classList.replace('bg-gradient-light','bg-gradient-secondary');
-                });
-
-                button.classList.add('active');
-                button.classList.replace('bg-gradient-secondary','bg-gradient-light');
+				if (button.classList.contains('active')){
+					button.classList.remove('active');
+                    button.classList.replace('bg-gradient-light','bg-gradient-secondary');
+				}
+				else{
+	                buttons.forEach(function (btn) {
+	                    btn.classList.remove('active');
+	                    btn.classList.replace('bg-gradient-light','bg-gradient-secondary');
+	                });
+	
+	                button.classList.add('active');
+	                button.classList.replace('bg-gradient-secondary','bg-gradient-light');
+	           }
             });
         });
     });

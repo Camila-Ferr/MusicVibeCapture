@@ -33,7 +33,7 @@ public class EmailService {
     
     public void recuperaSenha(String email, String codigo) throws MessagingException {
     	String htmlMessage = "Caro(a), <br/>"+
-    	        "<br/> Como solicitado, foi gerada um código para possibilitar o reset de senha para o seu login.<br/>" +
+    	        "<br/> Como solicitado, foi gerado um código para possibilitar o reset de senha para o seu login.<br/>" +
     	        "Código gerado : <strong>" + codigo + "</strong> <br/>"+
     			"<br/><strong>" +assigned +"</strong> ";
 
