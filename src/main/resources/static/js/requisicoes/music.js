@@ -84,10 +84,6 @@ function navigate(direction) {
         }
     }
 }
-document.getElementById("anterior").addEventListener("click", function() {
-    navigate('previous');
-});
-
 document.getElementById("proximo").addEventListener("click", function() {
     navigate('next');
 });
