@@ -13,9 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "usuario")
@@ -59,7 +59,7 @@ public class User implements UserDetails {
 		return senha;
 	}
 	public void setSenha(String senha) {
-		this.senha = DigestUtils.sha256Hex(senha);
+		this.senha = codificarSenha(senha);
 	}
 	public Date getNascimento() {
 		return nascimento;
@@ -119,5 +119,11 @@ public class User implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+    public String codificarSenha(String senha) {
+    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    	return encoder.encode(senha);
+    	
+    }
 
 }
