@@ -123,6 +123,7 @@ function returnInfo() {
     });
 }
 function saveInfo() {
+	if (editavel()){
 	    const info = {
 			avatar:document.getElementById("perfil").getAttribute("img-id"),
 	        genero: document.getElementById("genero-texto").textContent,
@@ -147,6 +148,7 @@ function saveInfo() {
     .then(response => response.json())
     .then(data => {
 		document.getElementById("aviso").classList.remove('d-none');
+		document.getElementById("text-aviso").innerText = "Usuário salvo com sucesso"
 	    setTimeout(function() {
 			document.getElementById("aviso").classList.add('d-none');
 		}, 10000);
@@ -154,6 +156,22 @@ function saveInfo() {
     .catch(error => {
         console.error('Erro ao salvar as informações:', error);
     });
+    }
+    else{
+		document.getElementById("aviso").classList.remove('d-none');
+		document.getElementById("text-aviso").innerHTML = 'Clique no símbolo <i class="material-icons button-icon opacity-10 primary">done</i> para completar a solicitação';
+	    setTimeout(function() {
+			document.getElementById("text-aviso").innerHTML="";
+			document.getElementById("aviso").classList.add('d-none');
+		}, 10000);
+	}
+}
+function editavel(){
+	var ativos = document.querySelectorAll('.active');
+	if (ativos.length > 0){
+		return false;
+	}
+	return true;
 }
 
 document.addEventListener('DOMContentLoaded', function () {

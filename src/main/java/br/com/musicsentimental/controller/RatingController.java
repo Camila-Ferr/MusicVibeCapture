@@ -59,7 +59,7 @@ public class RatingController {
     	
     	for (Object[] result : results) {
     		user = (User) result[0];
-    		RatingUserDTO usuario = new RatingUserDTO(user.getUsername(), user.getMoreInfo().getAvatar(), (Long) result[1] );
+    		RatingUserDTO usuario = new RatingUserDTO(user.getUsuario(), user.getMoreInfo().getAvatar(), (Long) result[1] );
     		ranking.add(usuario);
     		
         }
