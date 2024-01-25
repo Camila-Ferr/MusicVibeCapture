@@ -40,7 +40,7 @@ document.getElementById("senhaRec").addEventListener("submit", function(event) {
     				document.getElementById("confirmarCodigo").classList.remove("d-none");
     			}
             	else {
-                	document.getElementById("SenhaAviso").innerText = "Ocorreu um erro ao enviar o e-mail. Tente novamente";
+                	document.getElementById("SenhaAviso").innerText = "Ocorreu um erro ao enviar o e-mail. Tente novamente em 30 minutos";
             	 }
   			})
   			.catch(error => {

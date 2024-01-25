@@ -106,9 +106,15 @@ function envioAvaliacao(proximo) {
         },
         body: JSON.stringify(avaliacao)
     })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("opniao").value = "";
+    .then(response => {
+		if (response.ok){
+			document.getElementById("aviso").classList.remove('d-none');
+	                setTimeout(function() {
+						document.getElementById("aviso").classList.add('d-none');
+			}, 10000);
+	        
+	        document.getElementById("opniao").value = "";
+	     }
 
         if (proximo === true) {
 			document.querySelector('.nav-link.active').parentElement.classList.add('d-none');

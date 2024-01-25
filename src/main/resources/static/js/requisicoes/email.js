@@ -17,9 +17,13 @@ document.getElementById("sendEmail").addEventListener("submit", function(event) 
     })
     .then(response => {
 		document.getElementById("carregando").classList.add('d-none');
-        if (!response.ok) {
+        if (response.status === 400) {
 			document.getElementById("emailMessage").classList.add("text-danger")
 			document.getElementById("emailMessage").innerText = "Erro ao enviar o email";
+		}
+		else if (response.status === 409){
+			document.getElementById("emailMessage").classList.add("text-danger")
+			document.getElementById("emailMessage").innerText = "Tente novamente em 30 minutos";
 		}
         else{
 			document.getElementById("emailMessage").classList.add("text-success")

@@ -34,7 +34,7 @@ public class RatingController {
 
 
     @PostMapping("/saveAvaliacao")
-    public ResponseEntity<Rating> cadastrarAvaliacao(@RequestBody Map<String, String> requestBody) {
+    public ResponseEntity<String> cadastrarAvaliacao(@RequestBody Map<String, String> requestBody) {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	User user = (User) authentication.getPrincipal();
@@ -44,9 +44,10 @@ public class RatingController {
         String adicional = requestBody.get("adicional");
         
         Rating rating = new Rating(user, music, label, adicional);
-        Rating savedRating = repository.save(rating);
+        repository.save(rating);
         
-        return ResponseEntity.ok(savedRating);
+        return ResponseEntity.ok("Avaliação salva com sucesso");
+        
     }
     
     @GetMapping("/rankingUsers")
@@ -54,9 +55,11 @@ public class RatingController {
     	List<Object[]> results = repository.findTopUsers();
     	
     	ArrayList<RatingUserDTO> ranking = new ArrayList<>();
+    	User user;
     	
     	for (Object[] result : results) {
-    		RatingUserDTO usuario = new RatingUserDTO((User) result[0],(Long) result[1] );
+    		user = (User) result[0];
+    		RatingUserDTO usuario = new RatingUserDTO(user.getUsername(), user.getMoreInfo().getAvatar(), (Long) result[1] );
     		ranking.add(usuario);
     		
         }

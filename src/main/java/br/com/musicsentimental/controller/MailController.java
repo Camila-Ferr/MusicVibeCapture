@@ -1,5 +1,7 @@
 package br.com.musicsentimental.controller;
 
+import java.time.LocalDateTime;
+
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
@@ -35,26 +37,36 @@ public class MailController {
     
     @PostMapping("/sendEmail")
     public ResponseEntity<Object> sendEmail(@RequestBody EmailDTO requestEmail) {
-    	if (requestEmail.corpo()!= "") {
-    		emailService.sendEmail(requestEmail.assunto(),requestEmail.corpo());
+    	if (emailService.verificaEnvio(session.getAttribute("ultima_sugestao"))) {
+	    	
+    		if (requestEmail.corpo()!= "") {
+	    		LocalDateTime time = emailService.sendEmail(requestEmail.assunto(),requestEmail.corpo());
+	    		session.setAttribute("ultima_sugestao", time);
+	    	}
+	    	else {
+	    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+	    	}
+	        return ResponseEntity.status(HttpStatus.OK).build();
     	}
-    	else {
-    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    	}
-        return ResponseEntity.status(HttpStatus.OK).build();
+    	return ResponseEntity.status(HttpStatus.CONFLICT).build();
     }
     
     @PostMapping("/forgetPassword")
     public ResponseEntity<Object> generatePassword(@RequestBody NovaSenhaDto requestEmail) throws MessagingException {
     	
-    	User user = repository.findByEmail(requestEmail.email());
-    	if (user!= null) {
-			String codigo = RandomStringUtils.random(12, true, true);
-			emailService.recuperaSenha(requestEmail.email(), codigo);
-			session.setAttribute("codigo", codigo);
-			session.setAttribute("email", requestEmail.email());
-			return ResponseEntity.status(HttpStatus.OK).build();
-			
+    	if (emailService.verificaEnvio(session.getAttribute("ultimo_envio"))) {
+    		
+	    	User user = repository.findByEmail(requestEmail.email());
+	    	if (user!= null) {
+				String codigo = RandomStringUtils.random(12, true, true);
+				session.setAttribute("codigo", codigo);
+				
+				LocalDateTime time = emailService.recuperaSenha(requestEmail.email(), codigo);
+				session.setAttribute("ultimo_envio", time);
+				
+				session.setAttribute("email", requestEmail.email());
+				return ResponseEntity.status(HttpStatus.OK).build();
+	    	}
     	}
     	return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     	

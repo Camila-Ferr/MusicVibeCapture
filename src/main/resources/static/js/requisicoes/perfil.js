@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             imagem.addEventListener('click', function (event) {
                 var novoAvatar = event.target.id;
                 var imagemPerfil = document.getElementById('perfil');
-        		var novaUrl = "images/"+novoAvatar;
+        		var novaUrl = event.target.src;
 
         		imagemPerfil.src = novaUrl;
         		imagemPerfil.setAttribute("img-id", novoAvatar);
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     var editaveis = document.querySelectorAll('.editavel');
-   console.log(editaveis);
 
     editaveis.forEach(function (editavel) {
         editavel.addEventListener('click', function (event) {
@@ -37,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
             
             if (editavel.classList.contains('active')) {
 				editavel.classList.remove('active');
+				elementoIcone = editavel.querySelector('i');
+				elementoIcone.textContent = 'edit';
+				
                 texto.classList.remove('d-none');
                 texto.textContent = document.getElementById(atual + '-input').value;
                 item.removeChild(document.getElementById(atual + '-input'));
@@ -45,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 			else if (editavel.classList.contains('editavel-sel')){
 				editavel.classList.add('active');
+				elementoIcone = editavel.querySelector('i');
+				elementoIcone.textContent = 'done';
+				
 				texto.classList.add('d-none');
 				var input = document.createElement('select');
 				var selectOptions = options(atual);
@@ -64,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			else{
 				editavel.classList.add('active');
 				texto.classList.add('d-none');
+				elementoIcone = editavel.querySelector('i');
+				elementoIcone.textContent = 'done';
             	
             	
             	var input = document.createElement('input');
@@ -139,7 +146,10 @@ function saveInfo() {
     })
     .then(response => response.json())
     .then(data => {
-       console.error('Foi');
+		document.getElementById("aviso").classList.remove('d-none');
+	    setTimeout(function() {
+			document.getElementById("aviso").classList.add('d-none');
+		}, 10000);
     })
     .catch(error => {
         console.error('Erro ao salvar as informações:', error);

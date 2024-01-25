@@ -1,3 +1,3 @@
 package br.com.musicsentimental.model;
 
-public record RatingUserDTO (User user, Long quantidade) {}
+public record RatingUserDTO (String user, String avatar, Long quantidade) {}

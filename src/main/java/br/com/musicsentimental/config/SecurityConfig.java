@@ -29,6 +29,10 @@ public class SecurityConfig  {
                                 .antMatchers("/dashboard/**").authenticated()
                                 .antMatchers("/profile/**").authenticated()
                                 .antMatchers("/ranking/**").authenticated()
+                                .antMatchers("/rating/**").authenticated()
+                                .antMatchers("/music/**").authenticated()
+                                .antMatchers("/usuarios/cadastrar").permitAll()
+                                .antMatchers("/usuarios/**").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .formLogin(login -> login
