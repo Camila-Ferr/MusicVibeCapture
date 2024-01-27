@@ -100,6 +100,7 @@ function returnInfo() {
     .then(response => response.json())
     .then(data => {
         document.getElementById("perfil").src= data.moreInfo.avatar != null? "images/"+data.moreInfo.avatar : "images/avatar-1.png";
+        document.getElementById("perfil").setAttribute("img-id",data.moreInfo.avatar != null? data.moreInfo.avatar.match(/\d+/)[0] : 1);
         document.getElementById("nome").innerHTML = '<strong class="text-dark">Nome:</strong> &nbsp;' + data.nome;
         document.getElementById("nascimento").innerHTML = '<strong class="text-dark">Data de Nascimento:</strong> &nbsp;' + data.nascimento;
         document.getElementById("email").innerHTML = '<strong class="text-dark">E-mail:</strong> &nbsp;' + data.email;
