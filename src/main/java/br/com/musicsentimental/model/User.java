@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -53,7 +52,7 @@ public class User implements UserDetails {
 		return usuario;
 	}
 	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+		this.usuario= usuario.replaceAll("[^a-zA-Z0-9\\s@]", "");
 	}
 	public String getSenha() {
 		return senha;

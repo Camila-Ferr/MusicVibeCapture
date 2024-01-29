@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.musicsentimental.model.EmailDTO;
-import br.com.musicsentimental.model.NovaSenhaDto;
 import br.com.musicsentimental.model.User;
+import br.com.musicsentimental.model.dto.EmailDTO;
+import br.com.musicsentimental.model.dto.NovaSenhaDto;
 import br.com.musicsentimental.repository.UserRepository;
 import br.com.musicsentimental.service.EmailService;
 

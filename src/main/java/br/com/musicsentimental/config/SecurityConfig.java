@@ -23,7 +23,11 @@ public class SecurityConfig  {
         http
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers
-                        .frameOptions().disable())
+                        .frameOptions().sameOrigin()
+                        .xssProtection(xss -> xss
+                                .xssProtectionEnabled(true)
+                                .block(true))
+                        .xssProtection())
                 .authorizeRequests(authorizeConfig ->
                         authorizeConfig
                                 .antMatchers("/dashboard/**").authenticated()

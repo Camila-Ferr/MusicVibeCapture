@@ -1,4 +1,4 @@
-package br.com.musicsentimental.model;
+package br.com.musicsentimental.model.enums;
 
 public enum Label {
 	 FELICIDADE(1, "happy"),

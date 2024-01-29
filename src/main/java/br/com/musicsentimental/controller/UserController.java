@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.musicsentimental.model.Avatar;
 import br.com.musicsentimental.model.MoreInfo;
 import br.com.musicsentimental.model.User;
-import br.com.musicsentimental.model.UserDTO;
+import br.com.musicsentimental.model.dto.UserDTO;
+import br.com.musicsentimental.model.enums.Avatar;
 import br.com.musicsentimental.repository.MoreInfoRepository;
 import br.com.musicsentimental.repository.UserRepository;
 import br.com.musicsentimental.service.UserService;

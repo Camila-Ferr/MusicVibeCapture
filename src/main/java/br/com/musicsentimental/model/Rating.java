@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.musicsentimental.model.enums.Label;
+
 @Entity
 @Table(name = "avaliacao")
 public class Rating {

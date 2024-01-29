@@ -1,6 +1,8 @@
-package br.com.musicsentimental.model;
+package br.com.musicsentimental.model.dto;
 
 import java.sql.Date;
+
+import br.com.musicsentimental.model.MoreInfo;
 
 public class UserDTO {
 	private String email;

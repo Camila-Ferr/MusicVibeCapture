@@ -13,6 +13,7 @@
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/responsive.css" rel="stylesheet" />
   <link href="css/form.css" rel="stylesheet" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
 </head>
 
 <body>
@@ -109,27 +110,23 @@
 		</div>
           
   </section>
-    <section class="form">
-	    <div class="register-photo">
-	        <div class="form-container">
-	            	<div class="image-contact"></div>
-	            <form method="post" id="sendEmail">
-	                <h2 class="text-center"><strong>Deixe seu feedback!</strong></h2>
-	                <div class="spinner-border d-none" id="carregando" role="status">
-  						<span class="visually-hidden">Loading...</span>
-					</div>
-	                <div id="emailMessage" class="text-center"></div>
-	                
-	                <div class="form-group"><input class="form-control" name="assunto" id="assunto" placeholder="Assunto"></div>
-	                <textarea class="form-control" name="corpo" id="corpo" placeholder="Texto" style="height: 120px;"></textarea>
-	                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
-	                
-	                </form>
-	        </div>
-    	</div>
-      </div>
-    </div>
-  </section>
+  <section class="form">
+	<div class="register-photo">
+		<div class="form-container">
+			<div class="image-contact"></div>
+			<form method="post" id="sendEmail">
+				<h2 class="text-center"><strong>Deixe seu feedback!</strong></h2>
+				<div class="spinner-border d-none" id="carregando" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+				<div id="emailMessage" class="text-center"></div>
+				<div class="form-group"><input class="form-control" name="assunto" id="assunto" placeholder="Assunto"></div>
+				<textarea class="form-control" name="corpo" id="corpo" placeholder="Texto" style="height: 120px;"></textarea>
+				<div class="form-group"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
+			</form>
+		</div>
+	</div>
+ </section>
   
   <info-section></info-section>
 

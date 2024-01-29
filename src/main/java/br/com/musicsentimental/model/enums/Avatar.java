@@ -1,4 +1,4 @@
-package br.com.musicsentimental.model;
+package br.com.musicsentimental.model.enums;
 
 public enum Avatar {
 	 AVATAR1(1,"avatar-1.png"),
