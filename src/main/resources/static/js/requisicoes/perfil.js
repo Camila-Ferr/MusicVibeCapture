@@ -108,7 +108,7 @@ function returnInfo() {
         
         document.getElementById("genero-texto").textContent = data.moreInfo.genero != null?  data.moreInfo.genero: "";
         document.getElementById("regiao-texto").textContent = data.moreInfo.regiao != null?  data.moreInfo.regiao: "";
-        document.getElementById("musica-texto").textContent = data.moreInfo.estiloMusical != null?  data.estiloMusical: "";
+        document.getElementById("musica-texto").textContent = data.moreInfo.estiloMusical != null?  data.moreInfo.estiloMusical: "";
         document.getElementById("instrumento-1-texto").textContent = data.moreInfo.instrumentos1 != null?  data.moreInfo.instrumentos1: "";
         document.getElementById("instrumento-2-texto").textContent = data.moreInfo.instrumentos2 != null?  data.moreInfo.instrumentos2: "";
         document.getElementById("instrumento-3-texto").textContent = data.moreInfo.instrumentos3 != null?  data.moreInfo.instrumentos3: "";

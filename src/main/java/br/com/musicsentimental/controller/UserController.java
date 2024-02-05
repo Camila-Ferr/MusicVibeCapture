@@ -47,7 +47,7 @@ public class UserController {
     @PostMapping("/cadastrar")
     public ResponseEntity cadastrarUsuario(@RequestBody User user) {
     	
-    	if (userService.verificacao(user)) {
+    	if (userService.validaInfo(user) && userService.verificacao(user)) {
     		
     		MoreInfo moreInfo = new MoreInfo();
     		user.setMoreInfo(moreInfo);
@@ -55,7 +55,7 @@ public class UserController {
     		
     		repository.save(user);
     		
-    		 return ResponseEntity.ok("Usuário cadastrado com sucesso");
+    		return ResponseEntity.ok("Usuário cadastrado com sucesso");
     	}
     	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
@@ -78,7 +78,8 @@ public class UserController {
     	User user = (User) authentication.getPrincipal();
     	
     	MoreInfo info = user.getMoreInfo();
-    	info.setMoreInfo(moreInfo.getGenero(), moreInfo.getRegiao(), avatar.getRotulo(), moreInfo.getEstiloMusical(), moreInfo.getArtistasFavorito1(), moreInfo.getArtistasFavorito2(), moreInfo.getArtistasFavorito3(), moreInfo.getInstrumentos1(), moreInfo.getInstrumentos2(), moreInfo.getInstrumentos3(), moreInfo.getCuriosidade());
+    	String curiosidade = userService.validaCuriosidade(moreInfo.getCuriosidade());
+    	info.setMoreInfo(moreInfo.getGenero(), moreInfo.getRegiao(), avatar.getRotulo(), moreInfo.getEstiloMusical(), moreInfo.getArtistasFavorito1(), moreInfo.getArtistasFavorito2(), moreInfo.getArtistasFavorito3(), moreInfo.getInstrumentos1(), moreInfo.getInstrumentos2(), moreInfo.getInstrumentos3(), curiosidade);
     	moreRepository.save(info);
     	return ResponseEntity.ok(info);
     }
