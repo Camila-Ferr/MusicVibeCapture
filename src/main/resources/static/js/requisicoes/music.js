@@ -2,6 +2,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	loadMusicList();
 	
 });
+function finalizacao(){
+		document.getElementById("music").classList.add('d-none');
+        document.getElementById("proximo").classList.add('d-none');
+        document.getElementById("vazio").classList.remove('d-none');
+}
 
 function loadMusic(link,musica) {
 	const activeElements = document.querySelectorAll('.active');
@@ -27,6 +32,7 @@ function loadMusicList() {
     })
     .then(response => response.json())
     .then(data => {
+
 		document.getElementById("music").setAttribute("src", data[0].link);
 		
         const ul = document.createElement('ul');
@@ -64,7 +70,7 @@ function loadMusicList() {
         navbarNav.innerHTML = ul.innerHTML;
     })
     .catch(error => {
-        console.error('Erro ao carregar a lista de músicas:', error);
+		finalizacao();
     });
 }
 function navigate(direction) {
@@ -76,7 +82,13 @@ function navigate(direction) {
         if (direction === 'previous') {
             targetElement = activeElement.parentElement.previousElementSibling;
         } else if (direction === 'next') {
-            targetElement = activeElement.parentElement.nextElementSibling;
+			if (activeElement.parentElement.nextElementSibling){
+				 targetElement = activeElement.parentElement.nextElementSibling;
+			}
+			else{
+				finalizacao();
+			}
+           
         }
 
         if (targetElement) {
@@ -117,7 +129,7 @@ function envioAvaliacao(proximo) {
 	     }
 
         if (proximo === true) {
-			document.querySelector('.nav-link.active').parentElement.classList.add('d-none');
+			const activeNavLink = document.querySelector('.nav-link.active').parentElement.classList.add('d-none');
 			navigate('next');
 		}
 		else{

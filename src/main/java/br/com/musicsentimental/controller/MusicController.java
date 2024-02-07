@@ -32,7 +32,7 @@ public class MusicController {
         if (!musics.isEmpty()) {
             return new ResponseEntity<>(musics, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }
     }
 }
