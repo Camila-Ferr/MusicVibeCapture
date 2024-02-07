@@ -2,6 +2,7 @@ package br.com.musicsentimental.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,7 +19,12 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 	 List<Music> findUnratedMusicByUser(@Param("user") User user);
 	 
 	 @Query("SELECT a.user as user, COUNT(a.user) as quantidade FROM Rating a GROUP BY a.user ORDER BY COUNT(a.user) DESC")
-	 List<Object[]> findTopUsers();
+	 List<Object[]> findTopUsers(Pageable pag);
+	 
+	 boolean existsByUserAndMusic(User user, Music music);
+	 
+	 @Query("SELECT COUNT(DISTINCT user) FROM Rating u")
+	 long countDistinctUsers();
 
 
 }

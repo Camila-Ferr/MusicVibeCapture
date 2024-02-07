@@ -9,8 +9,6 @@ import br.com.musicsentimental.model.Music;
 public interface MusicRepository extends JpaRepository<Music, Long> {
     
     Music findByLink(String link);
-
-
     
 
 }
