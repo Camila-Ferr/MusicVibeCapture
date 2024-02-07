@@ -21,7 +21,7 @@
     				${isDashboard ? `
 					<ul class="navbar-nav list-musics">
 	        			<li class="nav-item">
-	          				<a class="nav-link" href="#">Teste</a>
+	          				<a class="nav-link" href="#">You win!</a>
 	        			</li>
       				</ul>`  :
       				`<ul class="navbar-nav">

@@ -184,3 +184,7 @@ p{
 .blur {
     background-color: hsla(0,0%,100%,.8)!important;
 }
+
+.card-transparent{
+	background-color: transparent !important;
+}
