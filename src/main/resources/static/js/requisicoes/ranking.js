@@ -105,6 +105,9 @@ function loadTable(pageNumber) {
             newRow.appendChild(quantityCell);
 
             tableBody.appendChild(newRow);
+            if (pageNumber === 0){
+				document.getElementById('1').classList.add('borda');
+			}
         });
         pintaIcones();
     })
