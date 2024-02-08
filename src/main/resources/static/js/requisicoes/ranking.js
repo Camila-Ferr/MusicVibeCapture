@@ -31,7 +31,6 @@ function loadPages(){
     })
     .then(data => {
         const total = data; 
-        console.log(total);
         const totalPages = Math.ceil(total / 10); // Dividindo o total por 10 e arredondando para cima
         
         const paginationContainer = document.querySelector('.pagination');
