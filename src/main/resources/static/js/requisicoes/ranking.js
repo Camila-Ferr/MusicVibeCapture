@@ -1,8 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     loadTable(0);
     loadPages();
+
     
 });
+function pintaIcones(){
+	document.getElementById("i-1").classList.add('gold');
+	document.getElementById("i-2").classList.add('silver');
+	document.getElementById("i-3").classList.add('bronze');
+}
 
 	
 function loadPages(){
@@ -72,7 +78,10 @@ function loadTable(pageNumber) {
             `;
 
             const positionCell = document.createElement('td');
-            positionCell.innerHTML = `<p class="text-xs font-weight-bold mb-0 text-white font-table-2">${newIndex + 1} Lugar</p>`;
+            positionCell.innerHTML = `<div class= "row align-items-center" id="${'i-' + (newIndex + 1)}"> 
+            						  	<p class=" font-weight-bold mb-0 text-white font-table-2 w-20">${newIndex + 1} Lugar</p>
+            						  	<i class="material-icons opacity-10 w-5 d-md-block d-none text-white">music_note</i>
+            						  </div>`;
 
 
             const quantityCell = document.createElement('td');
@@ -85,6 +94,7 @@ function loadTable(pageNumber) {
 
             tableBody.appendChild(newRow);
         });
+        pintaIcones();
     })
     .catch(error => console.error('Erro na requisição:', error));
 }
