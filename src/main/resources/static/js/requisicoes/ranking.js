@@ -5,9 +5,17 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 function pintaIcones(){
-	document.getElementById("i-1").classList.add('gold');
-	document.getElementById("i-2").classList.add('silver');
-	document.getElementById("i-3").classList.add('bronze');
+	if (document.getElementById("i-1")){
+		document.getElementById("i-1").classList.add('gold');
+		document.getElementById("i-2").classList.add('silver');
+		document.getElementById("i-3").classList.add('bronze');
+	}
+}
+function removeClasseBorder() {
+    var aElements = document.querySelectorAll('a.page-link');
+    aElements.forEach(function(aElement) {
+        aElement.classList.remove('borda');
+    });
 }
 
 	
@@ -32,9 +40,6 @@ function loadPages(){
         for (let i = 1; i <= totalPages; i++) {
             const liElement = document.createElement('li');
             liElement.classList.add('page-item');
-            liElement.addEventListener("click", function() {
-            	loadTable(parseInt(i-1));
-        	});
 
             const aElement = document.createElement('a');
             aElement.classList.add('page-link');
@@ -43,6 +48,14 @@ function loadPages(){
             aElement.textContent = i;
 
             liElement.appendChild(aElement);
+            
+            liElement.addEventListener("click", function() {
+            	loadTable(parseInt(i-1));
+            	removeClasseBorder();
+            	this.querySelector('a').classList.add('borda');
+            	
+        	});
+            
             paginationContainer.appendChild(liElement);
         }
     })
