@@ -6,7 +6,10 @@ public enum Label {
 	 ROMANTICA(3, "romantic"),
 	 AGRESSIVA(4, "agressive"),
 	 DRAMATICA(5, "dramatic"),
-	 CALMA(6, "calm");
+	 TRANQUILIDADE(6, "calm"),
+	 MEDO (7, "fear"),
+	 ENTUSIASMO (8, "enthusiasm");
+	 
 	
 	private final int codigo;
 	private final String rotulo;

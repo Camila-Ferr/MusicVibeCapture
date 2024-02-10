@@ -9,6 +9,7 @@ function pintaIcones(){
 		document.getElementById("i-1").classList.add('gold');
 		document.getElementById("i-2").classList.add('silver');
 		document.getElementById("i-3").classList.add('bronze');
+		document.getElementById('1').classList.add('borda');
 	}
 }
 function removeClasseBorder() {
@@ -105,9 +106,6 @@ function loadTable(pageNumber) {
             newRow.appendChild(quantityCell);
 
             tableBody.appendChild(newRow);
-            if (pageNumber === 0){
-				document.getElementById('1').classList.add('borda');
-			}
         });
         pintaIcones();
     })
