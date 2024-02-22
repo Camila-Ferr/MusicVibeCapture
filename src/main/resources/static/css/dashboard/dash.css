@@ -207,3 +207,6 @@ p{
 	background: rgb(255,255,255);
 	background: radial-gradient(circle, rgba(240,240,240,1) 53%, rgba(198,241,255,1) 95%);
 }
+.altura-dash{
+	height: 70% !important; 
+}

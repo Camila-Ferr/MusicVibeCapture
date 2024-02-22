@@ -17,7 +17,7 @@
       				</a>
     			</div>
     			<hr class="horizontal light mt-0 mb-2">
-    			<div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    			<div class="collapse navbar-collapse  w-auto altura-dash" id="sidenav-collapse-main">
     				${isDashboard ? `
 					<ul class="navbar-nav list-musics">
 	        			<li class="nav-item">
@@ -64,7 +64,8 @@
     			</div>
     			<div class="sidenav-footer position-absolute w-100 bottom-0 ">
       				<div class="mx-3">
-      				${isDashboard ? `<a class="btn bg-gradient-primary mt-4 w-100" href="/ranking" type="button">Ranking</a>` : 
+      				${isDashboard ? `<a class="btn bg-gradient-primary mt-4 w-100" href="/profile" type="button">Profile</a>
+      				<a class="btn bg-gradient-primary w-100" href="/ranking" type="button">Ranking</a>` : 
         				`<a class="btn bg-gradient-primary mt-4 w-100" href="/dashboard" type="button">Músicas</a>`}
         				<a class="btn btn-outline-primary w-100" href="/logout" type="button">Sair</a>
       				</div>
