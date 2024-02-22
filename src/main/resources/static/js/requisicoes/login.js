@@ -39,6 +39,10 @@ document.getElementById("senhaRec").addEventListener("submit", function(event) {
 					document.getElementById("senhaRec").classList.add("d-none");
     				document.getElementById("confirmarCodigo").classList.remove("d-none");
     			}
+    			else if (response.status === 404) {
+					document.getElementById("SenhaAviso").innerText = "O e-mail não está cadastrado.";
+				}
+
             	else {
                 	document.getElementById("SenhaAviso").innerText = "Ocorreu um erro ao enviar o e-mail. Tente novamente em 30 minutos";
             	 }

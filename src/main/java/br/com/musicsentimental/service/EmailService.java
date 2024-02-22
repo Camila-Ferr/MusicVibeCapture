@@ -68,5 +68,11 @@ public class EmailService {
         }
         return true;
     }
+    
+    public boolean verificaVezesEnvio (int vezes) {
+    	return vezes<=10? true:false; 
+    }
+
+
 
 }

@@ -54,8 +54,13 @@ public class MailController {
     @PostMapping("/forgetPassword")
     public ResponseEntity<Object> generatePassword(@RequestBody NovaSenhaDto requestEmail) throws MessagingException {
     	
-    	if (emailService.verificaEnvio(session.getAttribute("ultimo_envio"))) {
-    		
+    	if (session.getAttribute("ultimo_envio_count") == null) {
+    	    session.setAttribute("ultimo_envio_count", 0);
+    	}
+
+    	
+    	if (emailService.verificaEnvio(session.getAttribute("ultimo_envio")) || (emailService.verificaVezesEnvio((Integer) session.getAttribute("ultimo_envio_count")))) {
+
 	    	User user = repository.findByEmail(requestEmail.email());
 	    	if (user!= null) {
 				String codigo = RandomStringUtils.random(12, true, true);
@@ -63,14 +68,19 @@ public class MailController {
 				
 				LocalDateTime time = emailService.recuperaSenha(requestEmail.email(), codigo);
 				session.setAttribute("ultimo_envio", time);
+				session.setAttribute("ultimo_envio_count", (Integer) session.getAttribute("ultimo_envio_count")+1 );
 				
 				session.setAttribute("email", requestEmail.email());
 				return ResponseEntity.status(HttpStatus.OK).build();
+	    	}
+	    	else {
+	    		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	    	}
     	}
     	return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     	
     }
+    
     
     @PostMapping("/confirmCode")
     public ResponseEntity<Object> confirmCode(@RequestBody NovaSenhaDto codigoDigitado) throws MessagingException {
