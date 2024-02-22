@@ -210,3 +210,11 @@ p{
 .altura-dash{
 	height: 70% !important; 
 }
+.bar1, .bar2, .bar3 {
+	background: rgb(255,105,105) !important;
+
+}
+.navbar-toggler{
+	 box-shadow: 0 4px 4px rgb(192, 191, 188) !important;
+}
+
